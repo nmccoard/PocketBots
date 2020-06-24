@@ -76,8 +76,8 @@ public class BattleScreenActivity extends AppCompatActivity {
         monsterAnimation.start();
 
         textViewQuestion = findViewById(R.id.TextView_Question);
-        textViewOpponentHP = findViewById(R.id.opponentHPTextView);
-        textViewPlayerHP = findViewById(R.id.playerHPTextView);
+        //textViewOpponentHP = findViewById(R.id.opponentHPTextView);
+        //textViewPlayerHP = findViewById(R.id.playerHPTextView);
         rbGroup = findViewById(R.id.radioGroup);
         rb1 = findViewById(R.id.radioButton1);
         rb2 = findViewById(R.id.radioButton2);
@@ -86,8 +86,8 @@ public class BattleScreenActivity extends AppCompatActivity {
         submitBTN = findViewById(R.id.SubmitBTN);
 
         opponentHP = 10;
-        textViewOpponentHP.setText("HP: " + opponentHP);
-        textViewPlayerHP.setText("HP: " + playerHP);
+        //textViewOpponentHP.setText("HP: " + opponentHP);
+        //textViewPlayerHP.setText("HP: " + playerHP);
 
         textColorDefaultRb = rb1.getTextColors();
 
@@ -149,15 +149,18 @@ public class BattleScreenActivity extends AppCompatActivity {
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId());
         int answerNum = rbGroup.indexOfChild(rbSelected) + 1;
 
+        // ***********************
+        // NATE - I PUT IN HEALTH BARS THAT YOU CAN CHANGE HERE WHEN THEY TAKE DAMAGE
+        // ***********************
         if (answerNum == currentQuestion.getAnswerNum()){
             // reduces opponents HP by a random amount between 2-5.
             opponentHP = opponentHP - (r.nextInt(6 - 2) + 2);
-            textViewOpponentHP.setText("HP: " +opponentHP);
+            //textViewOpponentHP.setText("HP: " +opponentHP);
             // call the player's battle animation
         } else {
             // Reduce player HP a set amount
             playerHP = playerHP - 5;
-            textViewPlayerHP.setText("HP: " + playerHP);
+            //textViewPlayerHP.setText("HP: " + playerHP);
             // else call the opponents battle animation
         }
 

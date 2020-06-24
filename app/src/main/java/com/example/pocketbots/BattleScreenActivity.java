@@ -54,7 +54,7 @@ public class BattleScreenActivity extends AppCompatActivity {
     public ImageView boyImageView;
     public AnimationDrawable boyAnimation;
     public ImageView monsterImageView;
-    public AnimationDrawable redMonsterIdleAnimation;
+    public AnimationDrawable monsterAnimation;
 
 
     @Override
@@ -66,18 +66,14 @@ public class BattleScreenActivity extends AppCompatActivity {
         editGame = gameSettings.edit();
         level = gameSettings.getInt("level", 0);
 
-       // Intent intent = getIntent();
-        //level = intent.getStringExtra(MainActivity.EXTRA_LEVEL);
-
         boyImageView = (ImageView) findViewById(R.id.boyImageView);
         boyImageView.setBackgroundResource(R.drawable.boyidle);
         boyAnimation = (AnimationDrawable) boyImageView.getBackground();
         boyAnimation.start();
 
         monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
-        monsterImageView.setBackgroundResource(R.drawable.redmonsteridle);
-        redMonsterIdleAnimation = (AnimationDrawable) monsterImageView.getBackground();
-        redMonsterIdleAnimation.start();
+        setMonsterAnimation();
+        monsterAnimation.start();
 
         textViewQuestion = findViewById(R.id.TextView_Question);
         textViewOpponentHP = findViewById(R.id.opponentHPTextView);
@@ -218,5 +214,36 @@ public class BattleScreenActivity extends AppCompatActivity {
         }
 
         backPressedTime = System.currentTimeMillis();
+    }
+
+    public void setMonsterAnimation() {
+
+        monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
+
+        switch(level) {
+            case 1:
+                monsterImageView.setBackgroundResource(R.drawable.redmonsteridle);
+                break;
+            case 2:
+                monsterImageView.setBackgroundResource(R.drawable.gridle);
+                break;
+            case 3:
+                monsterImageView.setBackgroundResource(R.drawable.blueidle);
+                break;
+            case 4:
+                monsterImageView.setBackgroundResource(R.drawable.greyidle);
+                break;
+            case 5:
+                monsterImageView.setBackgroundResource(R.drawable.skullidle);
+                break;
+            case 6:
+                monsterImageView.setBackgroundResource(R.drawable.pinkidle);
+                break;
+            case 7:
+                monsterImageView.setBackgroundResource(R.drawable.orangeidle);
+                break;
+        }
+
+        monsterAnimation = (AnimationDrawable) monsterImageView.getBackground();
     }
 }

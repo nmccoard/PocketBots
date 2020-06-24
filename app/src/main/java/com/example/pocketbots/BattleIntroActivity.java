@@ -2,7 +2,9 @@ package com.example.pocketbots;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -11,16 +13,18 @@ import android.widget.ImageView;
 
 public class BattleIntroActivity extends AppCompatActivity {
 
-    Button exitButton;
-    Button saveButton;
-    Button battleButton;
+    public  Button battleButton;
 
-    ImageView bgImageView;
-    ImageView boyImageView;
-    ImageView monsterImageView;
+    public SharedPreferences gameSettings;
+    public SharedPreferences.Editor editGame;
+    public int level;
 
-    AnimationDrawable boyAnimation;
-    AnimationDrawable redMonsterIdleAnimation;
+    public ImageView bgImageView;
+    public ImageView boyImageView;
+    public ImageView monsterImageView;
+
+    public AnimationDrawable boyAnimation;
+    public AnimationDrawable monsterAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +32,11 @@ public class BattleIntroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_battle_intro);
 
         bgImageView = (ImageView) findViewById(R.id.bgImageView);
-        exitButton = (Button) findViewById(R.id.exitButton);
-        saveButton = (Button) findViewById(R.id.saveButton);
         battleButton = (Button) findViewById(R.id.battleButton);
+
+        gameSettings = getSharedPreferences("GameSettings", Context.MODE_PRIVATE);
+        editGame = gameSettings.edit();
+        level = gameSettings.getInt("level", 0);
     }
 
     @Override
@@ -42,13 +48,10 @@ public class BattleIntroActivity extends AppCompatActivity {
         boyAnimation = (AnimationDrawable) boyImageView.getBackground();
         boyImageView.setX(-350);
 
-        monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
-        monsterImageView.setBackgroundResource(R.drawable.redmonsteridle);
-        redMonsterIdleAnimation = (AnimationDrawable) monsterImageView.getBackground();
-        //monsterImageView.setX(125%);
+        setMonsterAnimation();
 
         boyAnimation.start();
-        redMonsterIdleAnimation.start();
+        monsterAnimation.start();
         boyImageView.animate().translationXBy(850).setDuration(3000);
 
         boyImageView.postDelayed(new Runnable() {
@@ -74,5 +77,36 @@ public class BattleIntroActivity extends AppCompatActivity {
     public void battle(View view) {
         Intent intent = new Intent(this, BattleScreenActivity.class);
         startActivity(intent);
+    }
+
+    public void setMonsterAnimation() {
+
+        monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
+
+        switch(level) {
+            case 1:
+                monsterImageView.setBackgroundResource(R.drawable.redmonsteridle);
+                break;
+            case 2:
+                monsterImageView.setBackgroundResource(R.drawable.gridle);
+                break;
+            case 3:
+                monsterImageView.setBackgroundResource(R.drawable.blueidle);
+                break;
+            case 4:
+                monsterImageView.setBackgroundResource(R.drawable.greyidle);
+                break;
+            case 5:
+                monsterImageView.setBackgroundResource(R.drawable.skullidle);
+                break;
+            case 6:
+                monsterImageView.setBackgroundResource(R.drawable.pinkidle);
+                break;
+            case 7:
+                monsterImageView.setBackgroundResource(R.drawable.orangeidle);
+                break;
+        }
+
+        monsterAnimation = (AnimationDrawable) monsterImageView.getBackground();
     }
 }

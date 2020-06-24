@@ -180,7 +180,10 @@ public class BattleScreenActivity extends AppCompatActivity {
     private void finishQuiz() {
         SharedPreferences.Editor editGame = gameSettings.edit();
         editGame.putInt("level", level++);
-        finish();
+        //Intent intent = new Intent(this, MapViewActivity.class);
+        Intent intent = new Intent(this, BattleIntroActivity.class);
+        startActivity(intent);
+        //finish();
     }
 
     @Override

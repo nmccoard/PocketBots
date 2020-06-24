@@ -2,11 +2,13 @@ package com.example.pocketbots;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -45,6 +47,7 @@ public class BattleScreenActivity extends AppCompatActivity {
     private long backPressedTime;
 
     public SharedPreferences gameSettings;
+    public SharedPreferences.Editor editGame;
 
 
     @Override
@@ -52,8 +55,9 @@ public class BattleScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle_screen);
 
-        SharedPreferences gameSettings = getSharedPreferences("GameSettings", MODE_PRIVATE);
-        level = gameSettings.getInt("level", 1);
+        gameSettings = getSharedPreferences("GameSettings", Context.MODE_PRIVATE);
+        editGame = gameSettings.edit();
+        level = gameSettings.getInt("level", 0);
 
        // Intent intent = getIntent();
         //level = intent.getStringExtra(MainActivity.EXTRA_LEVEL);
@@ -178,8 +182,10 @@ public class BattleScreenActivity extends AppCompatActivity {
 
     //This make it so it goes back to mainActivity
     private void finishQuiz() {
-        SharedPreferences.Editor editGame = gameSettings.edit();
-        editGame.putInt("level", level++);
+        level++;
+        editGame.putInt("level", level);
+        editGame.commit();
+        Log.d("Level", "Next level is " + level);
         //Intent intent = new Intent(this, MapViewActivity.class);
         Intent intent = new Intent(this, BattleIntroActivity.class);
         startActivity(intent);

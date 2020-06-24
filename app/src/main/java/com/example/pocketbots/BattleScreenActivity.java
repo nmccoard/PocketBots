@@ -6,11 +6,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -49,6 +51,11 @@ public class BattleScreenActivity extends AppCompatActivity {
     public SharedPreferences gameSettings;
     public SharedPreferences.Editor editGame;
 
+    public ImageView boyImageView;
+    public AnimationDrawable boyAnimation;
+    public ImageView monsterImageView;
+    public AnimationDrawable redMonsterIdleAnimation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +68,16 @@ public class BattleScreenActivity extends AppCompatActivity {
 
        // Intent intent = getIntent();
         //level = intent.getStringExtra(MainActivity.EXTRA_LEVEL);
+
+        boyImageView = (ImageView) findViewById(R.id.boyImageView);
+        boyImageView.setBackgroundResource(R.drawable.boyidle);
+        boyAnimation = (AnimationDrawable) boyImageView.getBackground();
+        boyAnimation.start();
+
+        monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
+        monsterImageView.setBackgroundResource(R.drawable.redmonsteridle);
+        redMonsterIdleAnimation = (AnimationDrawable) monsterImageView.getBackground();
+        redMonsterIdleAnimation.start();
 
         textViewQuestion = findViewById(R.id.TextView_Question);
         textViewOpponentHP = findViewById(R.id.opponentHPTextView);

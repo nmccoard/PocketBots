@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void newGame(View view) {
-
+        loadGame.setVisibility(View.GONE);
         SharedPreferences.Editor editGame = gameSettings.edit();
         editGame.putInt("level", 1);
         editGame.commit();

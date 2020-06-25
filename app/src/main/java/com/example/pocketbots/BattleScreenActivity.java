@@ -24,8 +24,8 @@ import java.util.Random;
 
 public class BattleScreenActivity extends AppCompatActivity {
     private TextView textViewQuestion;
-    private TextView textViewOpponentHP;
-    private TextView textViewPlayerHP;
+    //private TextView textViewOpponentHP;
+    //private TextView textViewPlayerHP;
     private RadioGroup rbGroup;
     private RadioButton rb1;
     private RadioButton rb2;
@@ -56,24 +56,35 @@ public class BattleScreenActivity extends AppCompatActivity {
     public ImageView monsterImageView;
     public AnimationDrawable monsterAnimation;
 
+    public ImageView playerHealth;
+    public ImageView monsterHealth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle_screen);
 
+        // Check the current level
         gameSettings = getSharedPreferences("GameSettings", Context.MODE_PRIVATE);
         editGame = gameSettings.edit();
         level = gameSettings.getInt("level", 0);
 
+        // Player and Opponent Images and Animations
         boyImageView = (ImageView) findViewById(R.id.boyImageView);
         boyImageView.setBackgroundResource(R.drawable.boyidle);
         boyAnimation = (AnimationDrawable) boyImageView.getBackground();
         boyAnimation.start();
-
         monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
         setMonsterAnimation();
-        monsterAnimation.start();
+
+        // Set Health Points and images
+        playerHealth = (ImageView) findViewById(R.id.playerHealth);
+        monsterHealth = (ImageView) findViewById(R.id.monsterHealth);
+        playerHealth.setBackgroundResource(R.drawable.health10);
+        monsterHealth.setBackgroundResource(R.drawable.health10);
+        //textViewOpponentHP.setText("HP: " + opponentHP);
+        //textViewPlayerHP.setText("HP: " + playerHP);
 
         textViewQuestion = findViewById(R.id.TextView_Question);
         //textViewOpponentHP = findViewById(R.id.opponentHPTextView);
@@ -85,16 +96,21 @@ public class BattleScreenActivity extends AppCompatActivity {
         rb4 = findViewById(R.id.radioButton4);
         submitBTN = findViewById(R.id.SubmitBTN);
 
-        opponentHP = 10;
-        //textViewOpponentHP.setText("HP: " + opponentHP);
-        //textViewPlayerHP.setText("HP: " + playerHP);
-
         textColorDefaultRb = rb1.getTextColors();
 
         QuizDbHelper dbHelper = new QuizDbHelper(this);
-        questionList = dbHelper.getQuestions(level);
+        if(level == 7){
+            // sets the monsters hp higher and pulls questions from every level
+            opponentHP = 10;
+            questionList = dbHelper.getAllQuestions();
+        } else {
+            opponentHP = 10;
+            questionList = dbHelper.getQuestions(level);
+        }
         Collections.shuffle(questionList);
 
+        //textViewOpponentHP.setText("HP: " + opponentHP);
+        //textViewPlayerHP.setText("HP: " + playerHP);
         showNextQuestion();
 
         submitBTN.setOnClickListener(new View.OnClickListener() {
@@ -120,12 +136,11 @@ public class BattleScreenActivity extends AppCompatActivity {
         rb3.setTextColor(textColorDefaultRb);
         rb4.setTextColor(textColorDefaultRb);
 
-
         // Clear selection
         rbGroup.clearCheck();
 
         // ask another question
-        if (opponentHP > 0) {
+        if (opponentHP > 0 && playerHP > 0) {
             currentQuestion = questionList.get(questionCounter);
 
             textViewQuestion.setText(currentQuestion.getQuestion());
@@ -149,17 +164,28 @@ public class BattleScreenActivity extends AppCompatActivity {
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId());
         int answerNum = rbGroup.indexOfChild(rbSelected) + 1;
 
-        // ***********************
-        // NATE - I PUT IN HEALTH BARS THAT YOU CAN CHANGE HERE WHEN THEY TAKE DAMAGE
-        // ***********************
         if (answerNum == currentQuestion.getAnswerNum()){
             // reduces opponents HP by a random amount between 2-5.
-            opponentHP = opponentHP - (r.nextInt(6 - 2) + 2);
+            if(level == 7){
+                opponentHP = opponentHP - 1;
+            } else {
+                opponentHP = opponentHP - (r.nextInt(6 - 2) + 2);
+            }
+            if (opponentHP < 0) {
+                opponentHP = 0;
+            }
+            setHealth(monsterHealth, opponentHP);
             //textViewOpponentHP.setText("HP: " +opponentHP);
             // call the player's battle animation
         } else {
             // Reduce player HP a set amount
             playerHP = playerHP - 5;
+            Log.d("HP", "The Monsters HP: " + opponentHP + " The Players HP is " + playerHP);
+            if(playerHP <= 0){
+                Toast.makeText(this, "Your Pocketbot was DEFEATED :(", Toast.LENGTH_LONG).show();
+                playerHP = 0;
+            }
+            setHealth(playerHealth, playerHP);
             //textViewPlayerHP.setText("HP: " + playerHP);
             // else call the opponents battle animation
         }
@@ -189,23 +215,33 @@ public class BattleScreenActivity extends AppCompatActivity {
         }
 
         // these action will need to be called after the fight animation
-        if(opponentHP > 0){
+        if(opponentHP > 0) {
             submitBTN.setText("Next");
+            if(playerHP <= 0){
+                submitBTN.setText("Finish");
+            }
         } else {
             submitBTN.setText("Finish");
+            win();
+            level++;
+            editGame.putInt("level", level);
+            editGame.commit();
+            Log.d("Level", "Next level is " + level);
         }
     }
 
     //This make it so it goes back to mainActivity
     private void finishQuiz() {
-        level++;
-        editGame.putInt("level", level);
-        editGame.commit();
-        Log.d("Level", "Next level is " + level);
-        //Intent intent = new Intent(this, MapViewActivity.class);
-        Intent intent = new Intent(this, BattleIntroActivity.class);
-        startActivity(intent);
-        //finish();
+        if(level == 8) {
+            editGame.putInt("level", 0);
+            editGame.commit();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        } else {
+            //Intent intent = new Intent(this, MapViewActivity.class);
+            Intent intent = new Intent(this, BattleIntroActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -220,8 +256,6 @@ public class BattleScreenActivity extends AppCompatActivity {
     }
 
     public void setMonsterAnimation() {
-
-        monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
 
         switch(level) {
             case 1:
@@ -246,7 +280,74 @@ public class BattleScreenActivity extends AppCompatActivity {
                 monsterImageView.setBackgroundResource(R.drawable.orangeidle);
                 break;
         }
-
         monsterAnimation = (AnimationDrawable) monsterImageView.getBackground();
+        monsterAnimation.start();
     }
+
+    public void setHealth(ImageView healthBar, int health) {
+
+        switch(health) {
+            case 0:
+                healthBar.setBackgroundResource(R.drawable.health0);
+                break;
+            case 1:
+                healthBar.setBackgroundResource(R.drawable.health1);
+                break;
+            case 2:
+                healthBar.setBackgroundResource(R.drawable.health2);
+                break;
+            case 3:
+                healthBar.setBackgroundResource(R.drawable.health3);
+                break;
+            case 4:
+                healthBar.setBackgroundResource(R.drawable.health4);
+                break;
+            case 5:
+                healthBar.setBackgroundResource(R.drawable.health5);
+                break;
+            case 6:
+                healthBar.setBackgroundResource(R.drawable.health6);
+                break;
+            case 7:
+                healthBar.setBackgroundResource(R.drawable.health7);
+                break;
+            case 8:
+                healthBar.setBackgroundResource(R.drawable.health8);
+                break;
+            case 9:
+                healthBar.setBackgroundResource(R.drawable.health9);
+                break;
+            default:
+                healthBar.setBackgroundResource(R.drawable.health10);
+        }
+    }
+
+    public void win() {
+        switch(level) {
+            case 1:
+                monsterImageView.setBackgroundResource(R.drawable.redhit);
+                break;
+            case 2:
+                monsterImageView.setBackgroundResource(R.drawable.grhit);
+                break;
+            case 3:
+                monsterImageView.setBackgroundResource(R.drawable.bluehit);
+                break;
+            case 4:
+                monsterImageView.setBackgroundResource(R.drawable.greyhit);
+                break;
+            case 5:
+                monsterImageView.setBackgroundResource(R.drawable.skullhit);
+                break;
+            case 6:
+                monsterImageView.setBackgroundResource(R.drawable.pinkhit);
+                break;
+            case 7:
+                monsterImageView.setBackgroundResource(R.drawable.orangehit);
+                break;
+        }
+        monsterAnimation = (AnimationDrawable) monsterImageView.getBackground();
+        monsterAnimation.start();
+    }
+
 }

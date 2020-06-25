@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void newGame(View view) {
-        loadGame.setVisibility(View.GONE);
+        // loadGame.setVisibility(View.GONE);
+        // add option to ask for name
+        // add another button to call another function to start the map activity
         SharedPreferences.Editor editGame = gameSettings.edit();
         editGame.putInt("level", 1);
         editGame.commit();

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -76,6 +77,11 @@ public class BattleScreenActivity extends AppCompatActivity {
         boyAnimation = (AnimationDrawable) boyImageView.getBackground();
         boyAnimation.start();
         monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
+        if (level == 7) {
+            ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) monsterImageView.getLayoutParams();
+            params.width *= 1.25;
+            params.height *= 1.25;
+        }
         setMonsterAnimation();
 
         // Set Health Points and images
@@ -262,7 +268,7 @@ public class BattleScreenActivity extends AppCompatActivity {
                 monsterImageView.setBackgroundResource(R.drawable.redmonsteridle);
                 break;
             case 2:
-                monsterImageView.setBackgroundResource(R.drawable.gridle);
+                monsterImageView.setBackgroundResource(R.drawable.skullidle);
                 break;
             case 3:
                 monsterImageView.setBackgroundResource(R.drawable.blueidle);
@@ -271,13 +277,41 @@ public class BattleScreenActivity extends AppCompatActivity {
                 monsterImageView.setBackgroundResource(R.drawable.greyidle);
                 break;
             case 5:
-                monsterImageView.setBackgroundResource(R.drawable.skullidle);
+                monsterImageView.setBackgroundResource(R.drawable.gridle);
                 break;
             case 6:
                 monsterImageView.setBackgroundResource(R.drawable.pinkidle);
                 break;
             case 7:
                 monsterImageView.setBackgroundResource(R.drawable.orangeidle);
+                break;
+        }
+        monsterAnimation = (AnimationDrawable) monsterImageView.getBackground();
+        monsterAnimation.start();
+    }
+
+    public void win() {
+        switch(level) {
+            case 1:
+                monsterImageView.setBackgroundResource(R.drawable.redhit);
+                break;
+            case 2:
+                monsterImageView.setBackgroundResource(R.drawable.skullhit);
+                break;
+            case 3:
+                monsterImageView.setBackgroundResource(R.drawable.bluehit);
+                break;
+            case 4:
+                monsterImageView.setBackgroundResource(R.drawable.greyhit);
+                break;
+            case 5:
+                monsterImageView.setBackgroundResource(R.drawable.grhit);
+                break;
+            case 6:
+                monsterImageView.setBackgroundResource(R.drawable.pinkhit);
+                break;
+            case 7:
+                monsterImageView.setBackgroundResource(R.drawable.orangehit);
                 break;
         }
         monsterAnimation = (AnimationDrawable) monsterImageView.getBackground();
@@ -320,34 +354,6 @@ public class BattleScreenActivity extends AppCompatActivity {
             default:
                 healthBar.setBackgroundResource(R.drawable.health10);
         }
-    }
-
-    public void win() {
-        switch(level) {
-            case 1:
-                monsterImageView.setBackgroundResource(R.drawable.redhit);
-                break;
-            case 2:
-                monsterImageView.setBackgroundResource(R.drawable.grhit);
-                break;
-            case 3:
-                monsterImageView.setBackgroundResource(R.drawable.bluehit);
-                break;
-            case 4:
-                monsterImageView.setBackgroundResource(R.drawable.greyhit);
-                break;
-            case 5:
-                monsterImageView.setBackgroundResource(R.drawable.skullhit);
-                break;
-            case 6:
-                monsterImageView.setBackgroundResource(R.drawable.pinkhit);
-                break;
-            case 7:
-                monsterImageView.setBackgroundResource(R.drawable.orangehit);
-                break;
-        }
-        monsterAnimation = (AnimationDrawable) monsterImageView.getBackground();
-        monsterAnimation.start();
     }
 
 }

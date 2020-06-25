@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -33,17 +34,23 @@ public class BattleIntroActivity extends AppCompatActivity {
 
         bgImageView = (ImageView) findViewById(R.id.bgImageView);
         battleButton = (Button) findViewById(R.id.battleButton);
+        boyImageView = (ImageView) findViewById(R.id.boyImageView);
+        monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
 
         gameSettings = getSharedPreferences("GameSettings", Context.MODE_PRIVATE);
         editGame = gameSettings.edit();
         level = gameSettings.getInt("level", 0);
+        if (level == 7) {
+            ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) monsterImageView.getLayoutParams();
+            params.width *= 1.25;
+            params.height *= 1.25;
+        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        boyImageView = (ImageView) findViewById(R.id.boyImageView);
         boyImageView.setBackgroundResource(R.drawable.boyrun);
         boyAnimation = (AnimationDrawable) boyImageView.getBackground();
         boyImageView.setX(-350);
@@ -80,8 +87,6 @@ public class BattleIntroActivity extends AppCompatActivity {
     }
 
     public void setMonsterAnimation() {
-
-        monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
 
         switch(level) {
             case 1:

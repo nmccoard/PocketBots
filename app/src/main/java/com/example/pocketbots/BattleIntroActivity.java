@@ -93,7 +93,7 @@ public class BattleIntroActivity extends AppCompatActivity {
                 monsterImageView.setBackgroundResource(R.drawable.redmonsteridle);
                 break;
             case 2:
-                monsterImageView.setBackgroundResource(R.drawable.gridle);
+                monsterImageView.setBackgroundResource(R.drawable.skullidle);
                 break;
             case 3:
                 monsterImageView.setBackgroundResource(R.drawable.blueidle);
@@ -102,7 +102,7 @@ public class BattleIntroActivity extends AppCompatActivity {
                 monsterImageView.setBackgroundResource(R.drawable.greyidle);
                 break;
             case 5:
-                monsterImageView.setBackgroundResource(R.drawable.skullidle);
+                monsterImageView.setBackgroundResource(R.drawable.gridle);
                 break;
             case 6:
                 monsterImageView.setBackgroundResource(R.drawable.pinkidle);

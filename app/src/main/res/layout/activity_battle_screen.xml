@@ -42,7 +42,7 @@
         android:layout_marginBottom="22dp"
         android:text="Question Field"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,8 +54,9 @@
         android:layout_width="522dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginBottom="34dp"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal"
+        android:gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -63,32 +64,33 @@
             android:id="@+id/radioButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RadioButton1"
             android:padding="6sp"
+            android:text="RadioButton1"
+            android:textColor="@android:color/white"
             android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RadioButton2"
             android:padding="6sp"
+            android:text="RadioButton2"
             android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radioButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RadioButton3"
             android:padding="6sp"
+            android:text="RadioButton3"
             android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/radioButton4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RadioButton4"
             android:padding="6sp"
+            android:text="RadioButton4"
             android:textSize="14sp" />
     </RadioGroup>
 
@@ -98,8 +100,9 @@
         android:layout_height="50dp"
         android:layout_marginStart="6dp"
         android:layout_marginEnd="80dp"
-        android:layout_marginBottom="24dp"
-        android:text="Submit"
+        android:layout_marginBottom="14dp"
+        android:text="submit"
+        android:textColorHighlight="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

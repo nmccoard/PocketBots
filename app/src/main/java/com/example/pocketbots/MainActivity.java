@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         // add option to ask for name
         // add another button to call another function to start the map activity
         SharedPreferences.Editor editGame = gameSettings.edit();
-        editGame.putInt("level", 1);
+        editGame.putInt("level", 6);
         editGame.commit();
         Intent intent = new Intent(MainActivity.this, BattleIntroActivity.class);
         startActivity(intent);

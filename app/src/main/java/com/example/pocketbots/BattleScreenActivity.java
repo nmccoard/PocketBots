@@ -173,7 +173,7 @@ public class BattleScreenActivity extends AppCompatActivity {
         if (answerNum == currentQuestion.getAnswerNum()){
             // reduces opponents HP by a random amount between 2-5.
             if(level == 7){
-                opponentHP = opponentHP - 1;
+                opponentHP = opponentHP - 5;
             } else {
                 opponentHP = opponentHP - (r.nextInt(6 - 2) + 2);
             }

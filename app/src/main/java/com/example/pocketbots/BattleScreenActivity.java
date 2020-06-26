@@ -150,6 +150,7 @@ public class BattleScreenActivity extends AppCompatActivity {
             currentQuestion = questionList.get(questionCounter);
 
             textViewQuestion.setText(currentQuestion.getQuestion());
+            Log.d("Question", "The current question is: " + currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());
@@ -173,7 +174,7 @@ public class BattleScreenActivity extends AppCompatActivity {
         if (answerNum == currentQuestion.getAnswerNum()){
             // reduces opponents HP by a random amount between 2-5.
             if(level == 7){
-                opponentHP = opponentHP - 5;
+                opponentHP = opponentHP - 1;
             } else {
                 opponentHP = opponentHP - (r.nextInt(6 - 2) + 2);
             }

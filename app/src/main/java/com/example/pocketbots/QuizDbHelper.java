@@ -16,7 +16,7 @@ import java.util.List;
 public class QuizDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "BattleScreenQuestions.db";
     // Change the database version when you make changes to the database, like adding questions.
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 7;
 
     private SQLiteDatabase db;
 
@@ -69,7 +69,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q7);
         Question q8 = new Question( "What is the correct syntax for multi-line comments?", "// comment", "/* comment */", "<!-- comment -->", "# comment", 2, 1);
         addQuestion(q8);
-        Question q9 = new Question( "Any text after // and the end of the line or between /* and */ are _____ by Java.", "executed", "ignored", "compiled", "printed on screen", 2, 1);
+        Question q9 = new Question( "Any text after // or between /* and */ are _____ by Java.", "executed", "ignored", "compiled", "printed on screen", 2, 1);
         addQuestion(q9);
         Question q10 = new Question( "What line of code will print \"Sonia\" to the screen?", "out.println(\"Sonia\");", "println(\"Sonia\");", "System.out.println(\"Sonia\")", "System.println(\"Sonia\")", 3, 1);
         addQuestion(q10);
@@ -151,23 +151,23 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q48);
         Question q49 = new Question( "What is the output of the following line of code? System.out.println(13 == 13);", "null", "13", "true", "false", 3, 5);
         addQuestion(q49);
-        Question q50 = new Question( "What is the output of the following lines of code? Int x = 5; System.out.println(x < 7);", "7", "true", "x", "false", 2, 5);
+        Question q50 = new Question( "What is the output of the following line of code? Int x = 5; System.out.println(x < 7);", "7", "true", "x", "false", 2, 5);
         addQuestion(q50);
         Question q51 = new Question( "What is the syntax for a string? Example: _____ text = \"Pocketbots\";", "String", "Text", "Char", "Letters", 1, 6);
         addQuestion(q51);
-        Question q52 = new Question( "What is the output of the following lines of code? String txt = \"Pocketbots\"; System.out.println(txt.length());", "txt", "10", "Pocketbots", "3", 2, 6);
+        Question q52 = new Question( "What is the output of the following line of code? String txt = \"Pocketbots\"; System.out.println(txt.length());", "txt", "10", "Pocketbots", "3", 2, 6);
         addQuestion(q52);
-        Question q53 = new Question( "What is the output of the following lines of code? String txt = \"PoCkEtBoTs\"; System.out.println(txt.toLowerCase());", "PoCkEtBots", "txt", "pocketbots", "tolowercase", 3, 6);
+        Question q53 = new Question( "What is the output of the following line of code? String txt = \"PoCkEtBoTs\"; System.out.println(txt.toLowerCase());", "PoCkEtBots", "txt", "pocketbots", "tolowercase", 3, 6);
         addQuestion(q53);
-        Question q54 = new Question( "What is the output of the following lines of code? String txt = \"PoCkEtBoTs\"; System.out.println(txt.toUpperCase());", "PoCkEtBots", "TXT", "TOUPPERCASE", "POCKETBOTS", 4, 6);
+        Question q54 = new Question( "What is the output of the following line of code? String txt = \"PoCkEtBoTs\"; System.out.println(txt.toUpperCase());", "PoCkEtBots", "TXT", "TOUPPERCASE", "POCKETBOTS", 4, 6);
         addQuestion(q54);
-        Question q55 = new Question( "What is the output of the following lines of code? String txt = \"This game is fun\"; System.out.println(txt.indexOf(\"game\")); ", "6", "game", "txt", "5", 4, 6);
+        Question q55 = new Question( "What is the output of the following line of code? String txt = \"This game is fun\"; System.out.println(txt.indexOf(\"game\")); ", "6", "game", "txt", "5", 4, 6);
         addQuestion(q55);
-        Question q56 = new Question( "What is the output of the following lines of code? String txt = \"Bots\"; System.out.println(\"Pocket\" + txt);", "Pockettxt", "Pocket Bots", "PocketBots", "Pocket txt", 3, 6);
+        Question q56 = new Question( "What is the output of the following line of code? String txt = \"Bots\"; System.out.println(\"Pocket\" + txt);", "Pockettxt", "Pocket Bots", "PocketBots", "Pocket txt", 3, 6);
         addQuestion(q56);
-        Question q57 = new Question( "What is the output of the following line of code? System.out.println(\"We are \\\"PocketBots\\\".\");", "We are \\PocketBots\\.", "We are \"PocketBots\".", "We are \\\"PocketBots\\\".", "PocketBots", 2, 6);
+        Question q57 = new Question("What is the output of the following line of code? System.out.println(“We are \\“PocketBots\\”.”);", "We are \\PocketBots\\.", "We are “PocketBots”.", "We are \\”PocketBots\\”.", "PocketBots", 2, 6);
         addQuestion(q57);
-        Question q58 = new Question("What is the output of the following line of code? System.out.println(\"We aren\\u2019t robotsbots.\");", "We aren\\’t robots\\\\bots", "We aren\\\\\\’t robots\\\\\\\\bots.", "We aren\\’t robots\\\\\\\\bots.", "We aren\\\\\\’t robots\\\\bots.", 1, 6);
+        Question q58 = new Question("What is the output of the following line of code? System.out.println(“We aren\\’t robots\\\\bots.”);", "We aren’t robots\\bots", "We aren\\’t robots\\\\bots.", "We aren’t robots\\\\bots.", "We aren\\’t robots\\bots.", 1, 6);
         addQuestion(q58);
         Question q59 = new Question( "Which is not a valid escape sequence?", "\\d", "\\n", "\\t", "\\b", 1, 6);
         addQuestion(q59);

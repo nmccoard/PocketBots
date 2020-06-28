@@ -11,9 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/background2"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background2" />
 
     <ImageView
         android:id="@+id/boyImageView"
@@ -35,10 +37,11 @@
 
     <TextView
         android:id="@+id/TextView_Question"
-        android:layout_width="606dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="42dp"
         android:layout_marginBottom="22dp"
         android:text="Question Field"
         android:textAlignment="center"
@@ -46,18 +49,21 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boyImageView" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="522dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="20dp"
-        android:orientation="horizontal"
         android:gravity="center_horizontal"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/SubmitBTN"
         app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
@@ -98,15 +104,12 @@
         android:id="@+id/SubmitBTN"
         android:layout_width="80dp"
         android:layout_height="50dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginEnd="38dp"
         android:layout_marginBottom="14dp"
         android:text="submit"
         android:textColorHighlight="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/radioGroup" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/playerHealth"

@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,6 +84,13 @@ public class BattleScreenActivity extends AppCompatActivity {
             params.height *= 1.25;
         }
         setMonsterAnimation();
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+        boyImageView.setY((float)(height*.007));
+        monsterImageView.setY((float)(height*.007));
 
         // Set Health Points and images
         playerHealth = (ImageView) findViewById(R.id.playerHealth);

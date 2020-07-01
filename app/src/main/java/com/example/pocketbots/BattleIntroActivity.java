@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,6 +21,9 @@ public class BattleIntroActivity extends AppCompatActivity {
     public SharedPreferences.Editor editGame;
     public int level;
 
+    public int height;
+    public int width;
+
     public ImageView bgImageView;
     public ImageView boyImageView;
     public ImageView monsterImageView;
@@ -31,6 +35,12 @@ public class BattleIntroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle_intro);
+
+        // Get screen size
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        height = displayMetrics.heightPixels;
+        width = displayMetrics.widthPixels;
 
         bgImageView = (ImageView) findViewById(R.id.bgImageView);
         battleButton = (Button) findViewById(R.id.battleButton);
@@ -54,6 +64,9 @@ public class BattleIntroActivity extends AppCompatActivity {
         boyImageView.setBackgroundResource(R.drawable.boyrun);
         boyAnimation = (AnimationDrawable) boyImageView.getBackground();
         boyImageView.setX(-350);
+
+        boyImageView.setY((float)(height*.01));
+        monsterImageView.setY((float)(height*.01));
 
         setMonsterAnimation();
 

@@ -16,7 +16,7 @@ import java.util.List;
 public class QuizDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "BattleScreenQuestions.db";
     // Change the database version when you make changes to the database, like adding questions.
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 12;
 
     private SQLiteDatabase db;
 
@@ -71,7 +71,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q8);
         Question q9 = new Question( "Any text after // or between /* and */ are _____ by Java.", "executed", "ignored", "compiled", "printed on screen", 2, 1);
         addQuestion(q9);
-        Question q10 = new Question( "What line of code will print \"Sonia\" to the screen?", "out.println(\"Sonia\");", "println(\"Sonia\");", "System.out.println(\"Sonia\")", "System.println(\"Sonia\")", 3, 1);
+        Question q10 = new Question( "What line of code will print \"So\" to the screen?", "out.println(\"So\");", "println(\"So\");", "System.out.println(\"So\")", "System.println(\"So\")", 3, 1);
         addQuestion(q10);
         Question q11 = new Question( "What is a String? A variable that stores _____.", "text", "letters", "symbols", "numbers", 1, 2);
         addQuestion(q11);
@@ -95,13 +95,13 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q20);
         Question q21 = new Question( "What is the value of sum2? int sum1 = 100 + 50; int sum2 = sum1 + 250;", "\"sum1250\"", "350", "400", "150", 3, 3);
         addQuestion(q21);
-        Question q22 = new Question( "What does the modulus (%) operator do?", "Multiplies two values", "Adds two values", "Divides a value by another", "Returns the remainder", 4, 3);
+        Question q22 = new Question( "What does the modulus (%) operator do?", "Multiplies 2 values", "Adds 2 values", "Divides 2 values", "Returns the remainder", 4, 3);
         addQuestion(q22);
-        Question q23 = new Question( "What does the Increment (++) operator do?", "Decrease by one", "Increase by one", "Returns the remainder", "Adds two values", 2, 3);
+        Question q23 = new Question( "What does the Increment (++) operator do?", "Decrease by 1", "Increase by 1", "Returns the remainder", "Adds 2 values", 2, 3);
         addQuestion(q23);
-        Question q24 = new Question( "What does the Decrement (--) operator do?", "Decrease by one", "Increase by one", "Subtracts a value from another", "Divides a value by another", 1, 3);
+        Question q24 = new Question( "What does the Decrement (--) operator do?", "Decrease by 1", "Increase by 1", "Subtracts 2 values", "Divides 2 values", 1, 3);
         addQuestion(q24);
-        Question q25 = new Question( "What do all assignment operators have in common?", "performs arithmetic", "the result is stored", "performs comparisons", "performs logical operations", 2, 3);
+        Question q25 = new Question( "All assignment operators perform _____", "arithmetic", "storing a value", "comparisons", "logical operations", 2, 3);
         addQuestion(q25);
         Question q26 = new Question( "Which expression is true?", "9.5 <= 9", "4 != 4", "2 >= 2", "5 < 5", 3, 3);
         addQuestion(q26);
@@ -157,17 +157,17 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q51);
         Question q52 = new Question( "What is the output of the following line of code? String txt = \"Pocketbots\"; System.out.println(txt.length());", "txt", "10", "Pocketbots", "3", 2, 6);
         addQuestion(q52);
-        Question q53 = new Question( "What is the output of the following line of code? String txt = \"PoCkEtBoTs\"; System.out.println(txt.toLowerCase());", "PoCkEtBots", "txt", "pocketbots", "tolowercase", 3, 6);
+        Question q53 = new Question( "What is the output of the following line of code? String txt = \"PoCkEtBoTs\"; System.out.println(txt.toLowerCase());", "PoCkEtBoTs", "txt", "pocketbots", "tolowercase", 3, 6);
         addQuestion(q53);
-        Question q54 = new Question( "What is the output of the following line of code? String txt = \"PoCkEtBoTs\"; System.out.println(txt.toUpperCase());", "PoCkEtBots", "TXT", "TOUPPERCASE", "POCKETBOTS", 4, 6);
+        Question q54 = new Question( "What is the output of the following line of code? String txt = \"PoCkEtBoTs\"; System.out.println(txt.toUpperCase());", "PoCkEtBoTs", "TXT", "TOUPPERCASE", "POCKETBOTS", 4, 6);
         addQuestion(q54);
         Question q55 = new Question( "What is the output of the following line of code? String txt = \"This game is fun\"; System.out.println(txt.indexOf(\"game\")); ", "6", "game", "txt", "5", 4, 6);
         addQuestion(q55);
         Question q56 = new Question( "What is the output of the following line of code? String txt = \"Bots\"; System.out.println(\"Pocket\" + txt);", "Pockettxt", "Pocket Bots", "PocketBots", "Pocket txt", 3, 6);
         addQuestion(q56);
-        Question q57 = new Question("What is the output of the following line of code? System.out.println(“We are \\“PocketBots\\”.”);", "We are \\PocketBots\\.", "We are “PocketBots”.", "We are \\”PocketBots\\”.", "PocketBots", 2, 6);
+        Question q57 = new Question("What is the output of the following line of code? System.out.println(“We are \\“Bots\\””);", "We are \\Bots\\", "We are “Bots”", "We are \\”Bots\\”", "Bots", 2, 6);
         addQuestion(q57);
-        Question q58 = new Question("What is the output of the following line of code? System.out.println(“We aren\\’t robots\\\\bots.”);", "We aren’t robots\\bots", "We aren\\’t robots\\\\bots.", "We aren’t robots\\\\bots.", "We aren\\’t robots\\bots.", 1, 6);
+        Question q58 = new Question("What is the output of the following line of code? System.out.println(“I\\’m 1\\\\2 bot”);", "I’m 1\\2 bot", "I\\’m 1\\\\2 bot", "I’m 1\\\\2 bot", "I\\’m 1\\2 bot", 1, 6);
         addQuestion(q58);
         Question q59 = new Question( "Which is not a valid escape sequence?", "\\d", "\\n", "\\t", "\\b", 1, 6);
         addQuestion(q59);

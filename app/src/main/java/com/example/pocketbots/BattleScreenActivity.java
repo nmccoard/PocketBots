@@ -89,11 +89,11 @@ public class BattleScreenActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
-        // 720 x 1440 - Brian
-        // 1080 x 2220 - Nate
+        // 720 x 1440 - Brian // 720 x 1334
+        // 1080 x 2220 - Nate // 1080 x 1794
         // 1,440 x 3,040 - Briana // 1080 x 2047
         Log.d("Dimensions", "Width: " + width + " Height: " + height);
-        if(width < 1740 ) {
+        if(width < 1800 ) {
             boyImageView.setY((float)(height*.054));
             //boyImageView.setX((float)(width*.025));
             monsterImageView.setY((float)(height*.054));

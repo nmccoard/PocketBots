@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".BattleIntroActivity"
+    android:background="@drawable/bg">
+
+
+    //ImageView
+        //android:id="@+id/bgImageView"
+        //android:layout_width="wrap_content"
+        //android:layout_height="match_parent"
+        //android:scaleType="centerCrop"
+        //app:srcCompat="@drawable/background"
+        //tools:layout_editor_absoluteX="0dp"
+        //tools:layout_editor_absoluteY="-16dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="730dp"
+        android:layout_height="132dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bgImageView"
+        app:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/boyImageView"
+        android:layout_width="105dp"
+        android:layout_height="144dp"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="156dp" />
+
+    <Button
+        android:id="@+id/backMenubutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="exitGame"
+        android:text="Main Menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/congratView"
+        android:layout_width="720dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="4dp"
+        android:text="Thank you so much, for to playing our game! You are now a Java Master! This game was created by Brian Earl, Briana Olsen, Josh Phillips and Nate McCoard."
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

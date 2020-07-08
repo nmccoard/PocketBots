@@ -264,7 +264,7 @@ public class BattleScreenActivity extends AppCompatActivity {
         if(level == 8) {
             editGame.putInt("level", 0);
             editGame.commit();
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, EndingActivity.class);
             startActivity(intent);
         } else {
             //Intent intent = new Intent(this, MapViewActivity.class);

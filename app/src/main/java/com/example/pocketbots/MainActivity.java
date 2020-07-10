@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editGame = gameSettings.edit();
         editGame.putInt("level", 1);
         editGame.commit();
-        Intent intent = new Intent(MainActivity.this, BattleIntroActivity.class);
+        Intent intent = new Intent(MainActivity.this, EndingActivity.class);
+        //Intent intent = new Intent(MainActivity.this, BattleIntroActivity.class);
         startActivity(intent);
     }
 

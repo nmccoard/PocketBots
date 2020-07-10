@@ -34,13 +34,14 @@ public class MainActivity extends AppCompatActivity {
         // add another button to call another function to start the map activity
         SharedPreferences.Editor editGame = gameSettings.edit();
         editGame.putInt("level", 1);
+        editGame.putInt("currentLevel", 1);
         editGame.commit();
-        Intent intent = new Intent(MainActivity.this, BattleIntroActivity.class);
+        Intent intent = new Intent(MainActivity.this, MapScreen.class);
         startActivity(intent);
     }
 
     public void loadGame(View view) {
-        Intent intent = new Intent(this, BattleIntroActivity.class);
+        Intent intent = new Intent(this, MapScreen.class);
         startActivity(intent);
     }
 }

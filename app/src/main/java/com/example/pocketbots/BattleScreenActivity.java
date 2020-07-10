@@ -36,6 +36,7 @@ public class BattleScreenActivity extends AppCompatActivity {
     private Button submitBTN;
 
     private int level;
+    private int currentLevel;
 
     private int opponentHP;
     private int playerHP = 10;
@@ -71,6 +72,7 @@ public class BattleScreenActivity extends AppCompatActivity {
         gameSettings = getSharedPreferences("GameSettings", Context.MODE_PRIVATE);
         editGame = gameSettings.edit();
         level = gameSettings.getInt("level", 0);
+        currentLevel = gameSettings.getInt("currentLevel", 1);
 
         // Player and Opponent Images and Animations
         boyImageView = (ImageView) findViewById(R.id.boyImageView);
@@ -93,10 +95,10 @@ public class BattleScreenActivity extends AppCompatActivity {
         // 1080 x 2220 - Nate // 1080 x 1794
         // 1,440 x 3,040 - Briana // 1080 x 2047
         Log.d("Dimensions", "Width: " + width + " Height: " + height);
-        if(width < 1800 ) {
-            boyImageView.setY((float)(height*.054));
+        if(height < 2000 ) {
+            boyImageView.setY((float)(height*0));
             //boyImageView.setX((float)(width*.025));
-            monsterImageView.setY((float)(height*.054));
+            monsterImageView.setY((float)(height*.023));
             //monsterImageView.setX((float)(width*.05));
         } else {
             boyImageView.setY((float)(height*.007));
@@ -252,10 +254,12 @@ public class BattleScreenActivity extends AppCompatActivity {
         } else {
             submitBTN.setText("Finish");
             win();
-            level++;
-            editGame.putInt("level", level);
-            editGame.commit();
-            Log.d("Level", "Next level is " + level);
+            if (level == currentLevel) {
+                currentLevel++;
+                editGame.putInt("currentLevel", currentLevel);
+                editGame.commit();
+                Log.d("Current Level", "Next level is " + currentLevel);
+            }
         }
     }
 
@@ -268,7 +272,7 @@ public class BattleScreenActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
             //Intent intent = new Intent(this, MapViewActivity.class);
-            Intent intent = new Intent(this, BattleIntroActivity.class);
+            Intent intent = new Intent(this, MapScreen.class);
             startActivity(intent);
         }
     }

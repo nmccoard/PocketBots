@@ -61,7 +61,6 @@
             android:id="@+id/radioButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
             android:padding="6sp"
             android:text="RadioButton1"
             android:textColor="@android:color/white"
@@ -71,7 +70,6 @@
             android:id="@+id/radioButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
             android:padding="6sp"
             android:text="RadioButton2"
             android:textSize="14sp" />
@@ -80,7 +78,6 @@
             android:id="@+id/radioButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
             android:padding="6sp"
             android:text="RadioButton3"
             android:textSize="14sp" />
@@ -89,7 +86,6 @@
             android:id="@+id/radioButton4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
             android:padding="6sp"
             android:text="RadioButton4"
             android:textSize="14sp" />
@@ -101,7 +97,6 @@
         android:layout_height="50dp"
         android:layout_marginEnd="38dp"
         android:layout_marginBottom="14dp"
-        android:fontFamily="sans-serif-medium"
         android:text="submit"
         android:textColorHighlight="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"

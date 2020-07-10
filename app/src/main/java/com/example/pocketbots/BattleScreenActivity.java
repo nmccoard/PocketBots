@@ -91,20 +91,19 @@ public class BattleScreenActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
-        // 720 x 1440 - Brian // 720 x 1334
-        // 1080 x 2220 - Nate // 1080 x 1794
-        // 1,440 x 3,040 - Briana // 1080 x 2047
+        // 720 x 1334  - Brian          - perfect   .054
+        // 1080 x 1794 - Nate Pixel 2   - sinking   .054
+        // 1080 x 2047 - Briana         - perfect   .007
+        // 1080 x 2088 - Nate Pixel 3a  - floating  .007
         Log.d("Dimensions", "Width: " + width + " Height: " + height);
-        if(height < 2000 ) {
-            boyImageView.setY((float)(height*0));
-            //boyImageView.setX((float)(width*.025));
-            monsterImageView.setY((float)(height*.023));
-            //monsterImageView.setX((float)(width*.05));
+
+
+        if(height < 900 ) {
+            boyImageView.setY((float)(height*.054));
+            monsterImageView.setY((float)(height*.054));
         } else {
-            boyImageView.setY((float)(height*.007));
-            //boyImageView.setX((float)(width*.025));
-            monsterImageView.setY((float)(height*.007));
-            //monsterImageView.setX((float)(width*.05));
+            boyImageView.setY((float)(height*.006));
+            monsterImageView.setY((float)(height*.006));
         }
 
 
@@ -254,12 +253,13 @@ public class BattleScreenActivity extends AppCompatActivity {
         } else {
             submitBTN.setText("Finish");
             win();
-            if (level == currentLevel) {
+            if (level == currentLevel){
                 currentLevel++;
                 editGame.putInt("currentLevel", currentLevel);
                 editGame.commit();
                 Log.d("Current Level", "Next level is " + currentLevel);
             }
+
         }
     }
 
@@ -272,7 +272,7 @@ public class BattleScreenActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
             //Intent intent = new Intent(this, MapViewActivity.class);
-            Intent intent = new Intent(this, MapScreen.class);
+            Intent intent = new Intent(this, MapViewActivity.class);
             startActivity(intent);
         }
     }

@@ -8,15 +8,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.pocketbots.QuizContract.*;
 
-import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "BattleScreenQuestions.db";
     // Change the database version when you make changes to the database, like adding questions.
-    private static final int DATABASE_VERSION = 13;
+    private static final int DATABASE_VERSION = 12;
 
     private SQLiteDatabase db;
 
@@ -65,15 +63,15 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q5);
         Question q6 = new Question( "What method must be included in every java program?", "system()", "start()", "main()", "java()", 3, 1);
         addQuestion(q6);
-        Question q7 = new Question( "Each code statement must end with a _________.", ":", ".", "}", ";", 4, 1);
+        Question q7 = new Question( "Each code statement must end with a _____.", ":", ".", "}", ";", 4, 1);
         addQuestion(q7);
         Question q8 = new Question( "What is the correct syntax for multi-line comments?", "// comment", "/* comment */", "<!-- comment -->", "# comment", 2, 1);
         addQuestion(q8);
-        Question q9 = new Question( "Any text after // or between /* and */ are _________ by Java.", "executed", "ignored", "compiled", "printed on screen", 2, 1);
+        Question q9 = new Question( "Any text after // or between /* and */ are _____ by Java.", "executed", "ignored", "compiled", "printed on screen", 2, 1);
         addQuestion(q9);
-        Question q10 = new Question( "What line of code will print \"S\" to the screen?", "out.println(\"S\");", "println(\"S\");", "System.out.println(\"S\");", "System.println(\"S\");", 3, 1);
+        Question q10 = new Question( "What line of code will print \"So\" to the screen?", "out.println(\"So\");", "println(\"So\");", "System.out.println(\"So\")", "System.println(\"So\")", 3, 1);
         addQuestion(q10);
-        Question q11 = new Question( "What is a String? A variable stores only ________.", "text", "letters", "symbols", "numbers", 1, 2);
+        Question q11 = new Question( "What is a String? A variable that stores _____.", "text", "letters", "symbols", "numbers", 1, 2);
         addQuestion(q11);
         Question q12 = new Question( "What is the best example of an integer?", "\"Five\"", "5", "0.5", "5e32", 2, 2);
         addQuestion(q12);
@@ -81,7 +79,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q13);
         Question q14 = new Question( "What can be represented by a char type variable in single quotes?", "A letter", "A symbol", "A number", "All answers are true", 4, 2);
         addQuestion(q14);
-        Question q15 = new Question( "A boolean is a variable that can store a ________ state.", "static", "dynamic", "program", "true and a false", 4, 2);
+        Question q15 = new Question( "A boolean is a variable that can store a _____ state.", "static", "dynamic", "program", "true and a false", 4, 2);
         addQuestion(q15);
         Question q16 = new Question( "Which is not a primitive data type?", "long", "short", "String", "byte", 3, 2);
         addQuestion(q16);
@@ -91,7 +89,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q18);
         Question q19 = new Question( "Which is a floating point type?", "int", "double", "short", "long", 2, 2);
         addQuestion(q19);
-        Question q20 = new Question( "A scientific number can be represented with ________?", "only a float", "only a double", "both a float and a double", "only a long", 3, 2);
+        Question q20 = new Question( "A scientific number can be represented with _____?", "only a float", "only a double", "both a float and a double", "only a long", 3, 2);
         addQuestion(q20);
         Question q21 = new Question( "What is the value of sum2? int sum1 = 100 + 50; int sum2 = sum1 + 250;", "\"sum1250\"", "350", "400", "150", 3, 3);
         addQuestion(q21);
@@ -101,7 +99,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q23);
         Question q24 = new Question( "What does the Decrement (--) operator do?", "Decrease by 1", "Increase by 1", "Subtracts 2 values", "Divides 2 values", 1, 3);
         addQuestion(q24);
-        Question q25 = new Question( "All assignment operators perform ________", "arithmetic", "value storage", "comparisons", "logical operations", 2, 3);
+        Question q25 = new Question( "All assignment operators perform _____", "arithmetic", "storing a value", "comparisons", "logical operations", 2, 3);
         addQuestion(q25);
         Question q26 = new Question( "Which expression is true?", "9.5 <= 9", "4 != 4", "2 >= 2", "5 < 5", 3, 3);
         addQuestion(q26);
@@ -189,7 +187,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         db.insert(QuestionsTable.TABLE_NAME, null, cv);
     }
 
-    public List<Question> getAllQuestions() {
+    public List<com.example.pocketbots.Question> getAllQuestions() {
         List<Question> questionList = new ArrayList<>();
         db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + QuestionsTable.TABLE_NAME, null);

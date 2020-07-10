@@ -36,12 +36,12 @@ public class MainActivity extends AppCompatActivity {
         editGame.putInt("level", 1);
         editGame.putInt("currentLevel", 1);
         editGame.commit();
-        Intent intent = new Intent(MainActivity.this, MapScreen.class);
+        Intent intent = new Intent(MainActivity.this, MapViewActivity.class);
         startActivity(intent);
     }
 
     public void loadGame(View view) {
-        Intent intent = new Intent(this, MapScreen.class);
+        Intent intent = new Intent(this, MapViewActivity.class);
         startActivity(intent);
     }
 }

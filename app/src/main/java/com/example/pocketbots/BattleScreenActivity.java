@@ -207,10 +207,33 @@ public class BattleScreenActivity extends AppCompatActivity {
             //textViewOpponentHP.setText("HP: " +opponentHP);
             // call the player's battle animation
         } else {
-            // Reduce player HP a set amount
             playerHP = playerHP - 5;
+            if(playerHP > 0) {
+                boyImageView.setBackgroundResource(R.drawable.boydizzy);
+                boyAnimation = (AnimationDrawable) boyImageView.getBackground();
+                boyAnimation.start();
+                boyImageView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        boyImageView.setBackgroundResource(R.drawable.boyidle);
+                        boyAnimation = (AnimationDrawable) boyImageView.getBackground();
+                        boyAnimation.start();
+                    }
+                }, 1000);
+            }
+            // Reduce player HP a set amount
+            //playerHP = playerHP - 5;
             Log.d("HP", "The Monsters HP: " + opponentHP + " The Players HP is " + playerHP);
             if(playerHP <= 0){
+                boyImageView.setBackgroundResource(R.drawable.boyfaint);
+                boyAnimation = (AnimationDrawable) boyImageView.getBackground();
+                boyAnimation.start();
+                boyImageView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        boyImageView.setBackgroundResource(R.drawable.boyfaint5);
+                    }
+                }, 700);
                 Toast.makeText(this, "Your Pocketbot was DEFEATED :(", Toast.LENGTH_LONG).show();
                 playerHP = 0;
             }

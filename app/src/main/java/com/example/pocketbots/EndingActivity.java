@@ -1,6 +1,7 @@
 package com.example.pocketbots;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -10,10 +11,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class EndingActivity extends AppCompatActivity {
-    //public Button mainMenu;
+    public Button mainMenu;
     public SharedPreferences gameSettings;
     public SharedPreferences.Editor editGame;
     public int level;
@@ -47,7 +49,7 @@ public class EndingActivity extends AppCompatActivity {
         logoView = (ImageView) findViewById(R.id.logoView);
 
         bgImageView = (ImageView) findViewById(R.id.bgImageView);
-        //mainMenu = (Button) findViewById(R.id.backMenubutton);
+        mainMenu = (Button) findViewById(R.id.menuBTN);
         boyImageView = (ImageView) findViewById(R.id.boyImageView);
         boyImageView2 = (ImageView) findViewById(R.id.boyImageView2);
         boyImageView3 = (ImageView) findViewById(R.id.boyImageView3);
@@ -125,5 +127,7 @@ public class EndingActivity extends AppCompatActivity {
 
             }
         }, 15000);
+
     }
+
 }

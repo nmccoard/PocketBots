@@ -18,7 +18,9 @@
         <activity
             android:name=".MapViewActivity"
             android:screenOrientation="landscape" />
-
+        <activity
+        android:name=".EndingActivity"
+        android:screenOrientation="landscape"/>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="landscape">
@@ -28,6 +30,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -14,7 +14,7 @@ import java.util.List;
 public class QuizDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "BattleScreenQuestions.db";
     // Change the database version when you make changes to the database, like adding questions.
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 14;
 
     private SQLiteDatabase db;
 

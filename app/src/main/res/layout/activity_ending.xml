@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".BattleIntroActivity"
+    android:background="@drawable/bg">
+
+
+    //ImageView
+        //android:id="@+id/bgImageView"
+        //android:layout_width="wrap_content"
+        //android:layout_height="match_parent"
+        //android:scaleType="centerCrop"
+        //app:srcCompat="@drawable/background"
+        //tools:layout_editor_absoluteX="0dp"
+        //tools:layout_editor_absoluteY="-16dp" />
+
+    <ImageView
+        android:id="@+id/logoView"
+        android:layout_width="735dp"
+        android:layout_height="212dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bgImageView"
+        app:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/boyImageView"
+        android:layout_width="105dp"
+        android:layout_height="144dp"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="156dp" />
+
+    <TextView
+        android:id="@+id/congratView"
+        android:layout_width="731dp"
+        android:layout_height="406dp"
+        android:fontFamily="@font/press_start_2p"
+        android:gravity="center|top"
+        android:text="Thank you so much,\n a-for-to playing our game!\n\n You are now a\n Java Master!\n\n This game was created by:\n\n Brian Earl,\n\n Briana Olsen,\n\n Josh Phillips and\n\n Nate McCoard."
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/boyImageView2"
+        android:layout_width="105dp"
+        android:layout_height="144dp"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="156dp" />
+
+    <ImageView
+        android:id="@+id/boyImageView3"
+        android:layout_width="105dp"
+        android:layout_height="144dp"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="156dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

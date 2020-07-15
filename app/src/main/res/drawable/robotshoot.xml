@@ -1,0 +1,8 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item android:drawable="@drawable/robotshoot1" android:duration="50" />
+    <item android:drawable="@drawable/robotshoot2" android:duration="50" />
+    <item android:drawable="@drawable/robotshoot3" android:duration="50" />
+    <item android:drawable="@drawable/robotshoot4" android:duration="50" />
+    <item android:drawable="@drawable/robotshoot5" android:duration="50" />
+</animation-list>

@@ -37,6 +37,9 @@ public class BattleScreenActivity extends AppCompatActivity {
 
     private int level;
 
+    public int height;
+    public int width;
+
     private int opponentHP;
     private int playerHP = 10;
     private int questionCounter;
@@ -56,7 +59,9 @@ public class BattleScreenActivity extends AppCompatActivity {
     public ImageView boyImageView;
     public AnimationDrawable boyAnimation;
     public ImageView monsterImageView;
+    //public ImageView monsterImageView2;
     public AnimationDrawable monsterAnimation;
+    //public AnimationDrawable monsterAnimation2;
 
     public ImageView playerHealth;
     public ImageView monsterHealth;
@@ -78,6 +83,7 @@ public class BattleScreenActivity extends AppCompatActivity {
         boyAnimation = (AnimationDrawable) boyImageView.getBackground();
         boyAnimation.start();
         monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
+        //monsterImageView2 = (ImageView) findViewById(R.id.monsterImageView2);
         if (level == 7) {
             ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) monsterImageView.getLayoutParams();
             params.width *= 1.25;
@@ -99,10 +105,14 @@ public class BattleScreenActivity extends AppCompatActivity {
 
         if(height < 900 ) {
             boyImageView.setY((float)(height*.054));
+            //boyImageView.setX((float)(-width*.03));
             monsterImageView.setY((float)(height*.054));
+            //monsterImageView.setX((float)(width*.5));
         } else {
             boyImageView.setY((float)(height*.006));
+
             monsterImageView.setY((float)(height*.006));
+
         }
 
 
@@ -204,10 +214,34 @@ public class BattleScreenActivity extends AppCompatActivity {
                 opponentHP = 0;
             }
             setHealth(monsterHealth, opponentHP);
+            if (opponentHP > 0) {
+                hitMonster();
+            }
             //textViewOpponentHP.setText("HP: " +opponentHP);
             // call the player's battle animation
         } else {
             playerHP = playerHP - 5;
+            monsterImageView.setX((float)(width*.05));
+            /*monsterImageView.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+            monsterImageView.setX((float)(width*1));
+                }
+            }, 200);
+            setMonsterAnimation();
+            monsterImageView2 = (ImageView) findViewById(R.id.monsterImageView2);
+            monsterImageView2.setBackgroundResource(R.drawable.redidle2);
+            monsterAnimation2 = (AnimationDrawable) monsterImageView2.getBackground();
+            monsterAnimation2.start();
+            monsterImageView2.animate().translationXBy((float) (-width * .5)).setDuration(10000);
+            monsterImageView.animate().translationXBy((float) (width * .5)).setDuration(10000);
+            monsterImageView.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    monsterImageView.setX((float)(width * .5));
+                }
+            }, 1000);
+            setMonsterAnimation();*/
             if(playerHP > 0) {
                 boyImageView.setBackgroundResource(R.drawable.boydizzy);
                 boyAnimation = (AnimationDrawable) boyImageView.getBackground();
@@ -334,6 +368,16 @@ public class BattleScreenActivity extends AppCompatActivity {
         }
         monsterAnimation = (AnimationDrawable) monsterImageView.getBackground();
         monsterAnimation.start();
+    }
+
+    public void hitMonster() {
+        win();
+        monsterImageView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+               setMonsterAnimation();
+            }
+        }, 1000);
     }
 
     public void win() {

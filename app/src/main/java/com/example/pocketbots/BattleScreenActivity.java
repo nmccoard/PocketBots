@@ -26,8 +26,6 @@ import java.util.Random;
 
 public class BattleScreenActivity extends AppCompatActivity {
     private TextView textViewQuestion;
-    //private TextView textViewOpponentHP;
-    //private TextView textViewPlayerHP;
     private RadioGroup rbGroup;
     private RadioButton rb1;
     private RadioButton rb2;
@@ -86,10 +84,13 @@ public class BattleScreenActivity extends AppCompatActivity {
         boyAnimation.start();
         monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
         //monsterImageView2 = (ImageView) findViewById(R.id.monsterImageView2);
-        if (level == 7) {
+        if (level >= 7) {
             ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) monsterImageView.getLayoutParams();
             params.width *= 1.25;
             params.height *= 1.25;
+        }
+        if (currentLevel == 8){
+            currentLevel--;
         }
         setMonsterAnimation();
 
@@ -122,12 +123,9 @@ public class BattleScreenActivity extends AppCompatActivity {
         monsterHealth = (ImageView) findViewById(R.id.monsterHealth);
         playerHealth.setBackgroundResource(R.drawable.health10);
         monsterHealth.setBackgroundResource(R.drawable.health10);
-        //textViewOpponentHP.setText("HP: " + opponentHP);
-        //textViewPlayerHP.setText("HP: " + playerHP);
 
         textViewQuestion = findViewById(R.id.TextView_Question);
-        //textViewOpponentHP = findViewById(R.id.opponentHPTextView);
-        //textViewPlayerHP = findViewById(R.id.playerHPTextView);
+
         rbGroup = findViewById(R.id.radioGroup);
         rb1 = findViewById(R.id.radioButton1);
         rb2 = findViewById(R.id.radioButton2);
@@ -148,8 +146,6 @@ public class BattleScreenActivity extends AppCompatActivity {
         }
         Collections.shuffle(questionList);
 
-        //textViewOpponentHP.setText("HP: " + opponentHP);
-        //textViewPlayerHP.setText("HP: " + playerHP);
         showNextQuestion();
 
         submitBTN.setOnClickListener(new View.OnClickListener() {
@@ -218,11 +214,11 @@ public class BattleScreenActivity extends AppCompatActivity {
             if (opponentHP > 0) {
                 hitMonster();
             }
-            //textViewOpponentHP.setText("HP: " +opponentHP);
+
             // call the player's battle animation
         } else {
             playerHP = playerHP - 5;
-            monsterImageView.setX((float)(width*.05));
+            //monsterImageView.setX((float)(width*.05));
             /*monsterImageView.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -273,7 +269,7 @@ public class BattleScreenActivity extends AppCompatActivity {
                 playerHP = 0;
             }
             setHealth(playerHealth, playerHP);
-            //textViewPlayerHP.setText("HP: " + playerHP);
+
             // else call the opponents battle animation
         }
 
@@ -304,9 +300,7 @@ public class BattleScreenActivity extends AppCompatActivity {
         // these action will need to be called after the fight animation
         if(opponentHP > 0) {
             submitBTN.setText("Next");
-            if(playerHP <= 0){
-                submitBTN.setText("Finish");
-            }
+
         } else {
             submitBTN.setText("Finish");
             win();
@@ -322,9 +316,8 @@ public class BattleScreenActivity extends AppCompatActivity {
 
     //This make it so it goes back to mainActivity
     private void finishQuiz() {
-        if(level == 8) {
-            editGame.putInt("level", 0);
-            editGame.commit();
+        if(currentLevel == 8) {
+
             Intent intent = new Intent(this, EndingActivity.class);
             startActivity(intent);
         } else {

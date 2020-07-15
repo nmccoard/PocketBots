@@ -36,6 +36,7 @@ public class BattleScreenActivity extends AppCompatActivity {
     private Button submitBTN;
 
     private int level;
+    private int currentLevel;
 
     public int height;
     public int width;
@@ -76,6 +77,7 @@ public class BattleScreenActivity extends AppCompatActivity {
         gameSettings = getSharedPreferences("GameSettings", Context.MODE_PRIVATE);
         editGame = gameSettings.edit();
         level = gameSettings.getInt("level", 0);
+        currentLevel = gameSettings.getInt("currentLevel", 1);
 
         // Player and Opponent Images and Animations
         boyImageView = (ImageView) findViewById(R.id.boyImageView);
@@ -100,7 +102,6 @@ public class BattleScreenActivity extends AppCompatActivity {
         // 1080 x 2047 - Briana         - perfect   .007
         // 1080 x 2088 - Nate Pixel 3a  - floating  .007
         Log.d("Dimensions", "Width: " + width + " Height: " + height);
-
 
 
         if(height < 900 ) {
@@ -309,10 +310,13 @@ public class BattleScreenActivity extends AppCompatActivity {
         } else {
             submitBTN.setText("Finish");
             win();
-            level++;
-            editGame.putInt("level", level);
-            editGame.commit();
-            Log.d("Level", "Next level is " + level);
+            if (level == currentLevel){
+                currentLevel++;
+                editGame.putInt("currentLevel", currentLevel);
+                editGame.commit();
+                Log.d("Current Level", "Next level is " + currentLevel);
+            }
+
         }
     }
 
@@ -325,7 +329,7 @@ public class BattleScreenActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
             //Intent intent = new Intent(this, MapViewActivity.class);
-            Intent intent = new Intent(this, BattleIntroActivity.class);
+            Intent intent = new Intent(this, MapViewActivity.class);
             startActivity(intent);
         }
     }

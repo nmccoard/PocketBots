@@ -27,9 +27,11 @@ public class BattleIntroActivity extends AppCompatActivity {
     public ImageView bgImageView;
     public ImageView boyImageView;
     public ImageView monsterImageView;
+    public ImageView robotImageView;
 
     public AnimationDrawable boyAnimation;
     public AnimationDrawable monsterAnimation;
+    public AnimationDrawable robotAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class BattleIntroActivity extends AppCompatActivity {
         battleButton = (Button) findViewById(R.id.battleButton);
         boyImageView = (ImageView) findViewById(R.id.boyImageView);
         monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
+        robotImageView = (ImageView) findViewById(R.id.robotImageView);
 
         gameSettings = getSharedPreferences("GameSettings", Context.MODE_PRIVATE);
         editGame = gameSettings.edit();
@@ -65,18 +68,25 @@ public class BattleIntroActivity extends AppCompatActivity {
         boyAnimation = (AnimationDrawable) boyImageView.getBackground();
         boyImageView.setX(-350);
 
+        robotImageView.setBackgroundResource(R.drawable.robotrun);
+        robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+        robotImageView.setX(-350);
+
         boyImageView.setY((float)(height*.01));
         boyImageView.setX((float)(-width*.25));
+
+        robotImageView.setY((float)(height*.01));
 
         monsterImageView.setY((float)(height*.01));
         monsterImageView.setX((float)(width*.05));
 
-
         setMonsterAnimation();
 
         boyAnimation.start();
+        robotAnimation.start();
         monsterAnimation.start();
         boyImageView.animate().translationXBy((float)(width*.4)).setDuration(3000);
+        robotImageView.animate().translationXBy((float)(width*.4)).setDuration(3000);
 
         boyImageView.postDelayed(new Runnable() {
             @Override
@@ -84,6 +94,15 @@ public class BattleIntroActivity extends AppCompatActivity {
                 boyImageView.setBackgroundResource(R.drawable.boyidle);
                 boyAnimation = (AnimationDrawable) boyImageView.getBackground();
                 boyAnimation.start();
+            }
+        }, 3000);
+
+        robotImageView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                robotImageView.setBackgroundResource(R.drawable.robotidle);
+                robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+                robotAnimation.start();
             }
         }, 3000);
     }

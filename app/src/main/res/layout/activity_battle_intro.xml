@@ -48,5 +48,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/robotImageView"
+        android:layout_width="169dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="50dp"
+        android:scaleX="-1"
+        app:layout_constraintStart_toStartOf="@+id/boyImageView"
+        tools:layout_editor_absoluteY="248dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

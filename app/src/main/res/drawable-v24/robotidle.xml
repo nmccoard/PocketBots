@@ -1,0 +1,34 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item android:drawable="@drawable/robotidle1" android:duration="50" />
+    <item android:drawable="@drawable/robotidle2" android:duration="50" />
+    <item android:drawable="@drawable/robotidle3" android:duration="50" />
+    <item android:drawable="@drawable/robotidle4" android:duration="50" />
+    <item android:drawable="@drawable/robotidle5" android:duration="50" />
+    <item android:drawable="@drawable/robotidle6" android:duration="50" />
+    <item android:drawable="@drawable/robotidle7" android:duration="50" />
+    <item android:drawable="@drawable/robotidle8" android:duration="50" />
+    <item android:drawable="@drawable/robotidle9" android:duration="50" />
+    <item android:drawable="@drawable/robotidle10" android:duration="50" />
+    <item android:drawable="@drawable/robotidle11" android:duration="50" />
+    <item android:drawable="@drawable/robotidle12" android:duration="50" />
+    <item android:drawable="@drawable/robotidle13" android:duration="50" />
+    <item android:drawable="@drawable/robotidle14" android:duration="50" />
+    <item android:drawable="@drawable/robotidle15" android:duration="50" />
+    <item android:drawable="@drawable/robotidle16" android:duration="50" />
+    <item android:drawable="@drawable/robotidle17" android:duration="50" />
+    <item android:drawable="@drawable/robotidle18" android:duration="50" />
+    <item android:drawable="@drawable/robotidle19" android:duration="50" />
+    <item android:drawable="@drawable/robotidle20" android:duration="50" />
+    <item android:drawable="@drawable/robotidle21" android:duration="50" />
+    <item android:drawable="@drawable/robotidle22" android:duration="50" />
+    <item android:drawable="@drawable/robotidle23" android:duration="50" />
+    <item android:drawable="@drawable/robotidle24" android:duration="50" />
+    <item android:drawable="@drawable/robotidle25" android:duration="50" />
+    <item android:drawable="@drawable/robotidle26" android:duration="50" />
+    <item android:drawable="@drawable/robotidle27" android:duration="50" />
+    <item android:drawable="@drawable/robotidle28" android:duration="50" />
+    <item android:drawable="@drawable/robotidle29" android:duration="50" />
+    <item android:drawable="@drawable/robotidle30" android:duration="50" />
+    <item android:drawable="@drawable/robotidle31" android:duration="50" />
+</animation-list>

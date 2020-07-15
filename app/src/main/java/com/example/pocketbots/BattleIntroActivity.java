@@ -85,8 +85,8 @@ public class BattleIntroActivity extends AppCompatActivity {
         boyAnimation.start();
         robotAnimation.start();
         monsterAnimation.start();
-        boyImageView.animate().translationXBy((float)(width*.3)).setDuration(3000);
-        robotImageView.animate().translationXBy((float)(width*.3)).setDuration(3000);
+        boyImageView.animate().translationXBy((float)(width*.35)).setDuration(3000);
+        robotImageView.animate().translationXBy((float)(width*.35)).setDuration(3000);
 
         boyImageView.postDelayed(new Runnable() {
             @Override

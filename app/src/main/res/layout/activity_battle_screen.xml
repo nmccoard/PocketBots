@@ -18,6 +18,16 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
+        android:id="@+id/robotImageView"
+        android:layout_width="169dp"
+        android:layout_height="111dp"
+        android:scaleX="-1"
+        android:layout_marginStart="156dp"
+        android:layout_marginBottom="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
         android:id="@+id/monsterImageView"
         android:layout_width="171dp"
         android:layout_height="174dp"

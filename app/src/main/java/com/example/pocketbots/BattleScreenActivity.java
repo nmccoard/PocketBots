@@ -57,10 +57,12 @@ public class BattleScreenActivity extends AppCompatActivity {
 
     public ImageView boyImageView;
     public AnimationDrawable boyAnimation;
+
+    public ImageView robotImageView;
+    public AnimationDrawable robotAnimation;
+
     public ImageView monsterImageView;
-    //public ImageView monsterImageView2;
     public AnimationDrawable monsterAnimation;
-    //public AnimationDrawable monsterAnimation2;
 
     public ImageView playerHealth;
     public ImageView monsterHealth;
@@ -82,8 +84,14 @@ public class BattleScreenActivity extends AppCompatActivity {
         boyImageView.setBackgroundResource(R.drawable.boyidle);
         boyAnimation = (AnimationDrawable) boyImageView.getBackground();
         boyAnimation.start();
+
+        robotImageView = (ImageView) findViewById(R.id.robotImageView);
+        robotImageView.setBackgroundResource(R.drawable.robotidle);
+        robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+        robotAnimation.start();
+
         monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
-        //monsterImageView2 = (ImageView) findViewById(R.id.monsterImageView2);
+
         if (level >= 7) {
             ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) monsterImageView.getLayoutParams();
             params.width *= 1.25;
@@ -107,6 +115,7 @@ public class BattleScreenActivity extends AppCompatActivity {
 
         if(height < 900 ) {
             boyImageView.setY((float)(height*.054));
+            robotImageView.setY((float)(height*.054));
             //boyImageView.setX((float)(-width*.03));
             monsterImageView.setY((float)(height*.054));
             //monsterImageView.setX((float)(width*.5));
@@ -240,7 +249,7 @@ public class BattleScreenActivity extends AppCompatActivity {
             }, 1000);
             setMonsterAnimation();*/
             if(playerHP > 0) {
-                boyImageView.setBackgroundResource(R.drawable.boydizzy);
+               /* boyImageView.setBackgroundResource(R.drawable.boydizzy);
                 boyAnimation = (AnimationDrawable) boyImageView.getBackground();
                 boyAnimation.start();
                 boyImageView.postDelayed(new Runnable() {
@@ -250,13 +259,24 @@ public class BattleScreenActivity extends AppCompatActivity {
                         boyAnimation = (AnimationDrawable) boyImageView.getBackground();
                         boyAnimation.start();
                     }
-                }, 1000);
+                }, 1000);*/
+                robotImageView.setBackgroundResource(R.drawable.robothit);
+                robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+                robotAnimation.start();
+                robotImageView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        robotImageView.setBackgroundResource(R.drawable.robotidle);
+                        robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+                        robotAnimation.start();
+                    }
+                }, 800);
             }
             // Reduce player HP a set amount
             //playerHP = playerHP - 5;
             Log.d("HP", "The Monsters HP: " + opponentHP + " The Players HP is " + playerHP);
             if(playerHP <= 0){
-                boyImageView.setBackgroundResource(R.drawable.boyfaint);
+                /*boyImageView.setBackgroundResource(R.drawable.boyfaint);
                 boyAnimation = (AnimationDrawable) boyImageView.getBackground();
                 boyAnimation.start();
                 boyImageView.postDelayed(new Runnable() {
@@ -264,7 +284,17 @@ public class BattleScreenActivity extends AppCompatActivity {
                     public void run() {
                         boyImageView.setBackgroundResource(R.drawable.boyfaint5);
                     }
-                }, 700);
+                }, 700);*/
+                robotImageView.setBackgroundResource(R.drawable.robotstunned);
+                robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+                robotAnimation.start();
+                robotImageView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        robotImageView.setBackgroundResource(R.drawable.robotstunned51);
+                    }
+                }, 2550);
+
                 Toast.makeText(this, "Your Pocketbot was DEFEATED :(", Toast.LENGTH_LONG).show();
                 playerHP = 0;
             }

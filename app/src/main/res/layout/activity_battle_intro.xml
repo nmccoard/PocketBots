@@ -54,6 +54,8 @@
         android:layout_height="111dp"
         android:layout_marginStart="50dp"
         android:scaleX="-1"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/boyImageView"
         tools:layout_editor_absoluteY="248dp" />
 

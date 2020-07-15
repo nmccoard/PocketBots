@@ -1,6 +1,5 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:oneshot="false">
-    <item android:drawable="@drawable/robotstunned1" android:duration="50" />
     <item android:drawable="@drawable/robotstunned2" android:duration="50" />
     <item android:drawable="@drawable/robotstunned3" android:duration="50" />
     <item android:drawable="@drawable/robotstunned4" android:duration="50" />
@@ -51,6 +50,6 @@
     <item android:drawable="@drawable/robotstunned49" android:duration="50" />
     <item android:drawable="@drawable/robotstunned50" android:duration="50" />
     <item android:drawable="@drawable/robotstunned51" android:duration="50" />
-
+    <item android:drawable="@drawable/robotstunned1" android:duration="50" />
 
 </animation-list>

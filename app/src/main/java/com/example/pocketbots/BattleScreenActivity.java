@@ -248,7 +248,8 @@ public class BattleScreenActivity extends AppCompatActivity {
                 }
             }, 1000);
             setMonsterAnimation();*/
-            if(playerHP > 0) {
+
+            //if(playerHP > 0) {
                /* boyImageView.setBackgroundResource(R.drawable.boydizzy);
                 boyAnimation = (AnimationDrawable) boyImageView.getBackground();
                 boyAnimation.start();
@@ -266,15 +267,26 @@ public class BattleScreenActivity extends AppCompatActivity {
                 robotImageView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        robotImageView.setBackgroundResource(R.drawable.robotidle);
-                        robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-                        robotAnimation.start();
+                        if(playerHP > 0) {
+                            robotImageView.setBackgroundResource(R.drawable.robotidle);
+                            robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+                            robotAnimation.start();
+                        } else {
+                            robotImageView.setBackgroundResource(R.drawable.robotstunned);
+                            robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+                            robotAnimation.start();
+                            robotImageView.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    robotImageView.setBackgroundResource(R.drawable.robotstunned1);
+                                }
+                            }, 2550);
+                        }
                     }
                 }, 800);
-            }
-            // Reduce player HP a set amount
-            //playerHP = playerHP - 5;
-            Log.d("HP", "The Monsters HP: " + opponentHP + " The Players HP is " + playerHP);
+            //} else if
+
+
             if(playerHP <= 0){
                 /*boyImageView.setBackgroundResource(R.drawable.boyfaint);
                 boyAnimation = (AnimationDrawable) boyImageView.getBackground();
@@ -285,19 +297,15 @@ public class BattleScreenActivity extends AppCompatActivity {
                         boyImageView.setBackgroundResource(R.drawable.boyfaint5);
                     }
                 }, 700);*/
-                robotImageView.setBackgroundResource(R.drawable.robotstunned);
-                robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-                robotAnimation.start();
-                robotImageView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        robotImageView.setBackgroundResource(R.drawable.robotstunned51);
-                    }
-                }, 2550);
+
 
                 Toast.makeText(this, "Your Pocketbot was DEFEATED :(", Toast.LENGTH_LONG).show();
                 playerHP = 0;
             }
+
+            // Reduce player HP a set amount
+            //playerHP = playerHP - 5;
+            Log.d("HP", "The Monsters HP: " + opponentHP + " The Players HP is " + playerHP);
             setHealth(playerHealth, playerHP);
 
             // else call the opponents battle animation

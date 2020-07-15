@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -50,6 +51,7 @@ public class EndingActivity extends AppCompatActivity {
 
         bgImageView = (ImageView) findViewById(R.id.bgImageView);
         mainMenu = (Button) findViewById(R.id.menuBTN);
+        mainMenu.setVisibility(View.INVISIBLE);
         boyImageView = (ImageView) findViewById(R.id.boyImageView);
         boyImageView2 = (ImageView) findViewById(R.id.boyImageView2);
         boyImageView3 = (ImageView) findViewById(R.id.boyImageView3);
@@ -61,6 +63,11 @@ public class EndingActivity extends AppCompatActivity {
             params.width *= 1.25;
             params.height *= 1.25;
         }
+    }
+
+    public void exitGame(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -118,6 +125,7 @@ public class EndingActivity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         boyImageView3.setBackgroundResource(R.drawable.boyfaint5);
+                                        mainMenu.setVisibility(View.VISIBLE);
                                     }
                                 }, 700);
                             }

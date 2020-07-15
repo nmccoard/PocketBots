@@ -80,10 +80,10 @@ public class BattleScreenActivity extends AppCompatActivity {
         currentLevel = gameSettings.getInt("currentLevel", 1);
 
         // Player and Opponent Images and Animations
-        boyImageView = (ImageView) findViewById(R.id.boyImageView);
-        boyImageView.setBackgroundResource(R.drawable.boyidle);
-        boyAnimation = (AnimationDrawable) boyImageView.getBackground();
-        boyAnimation.start();
+        //boyImageView = (ImageView) findViewById(R.id.boyImageView);
+        //boyImageView.setBackgroundResource(R.drawable.boyidle);
+        //boyAnimation = (AnimationDrawable) boyImageView.getBackground();
+        //boyAnimation.start();
 
         robotImageView = (ImageView) findViewById(R.id.robotImageView);
         robotImageView.setBackgroundResource(R.drawable.robotidle);
@@ -114,13 +114,13 @@ public class BattleScreenActivity extends AppCompatActivity {
 
 
         if(height < 900 ) {
-            boyImageView.setY((float)(height*.054));
+            //boyImageView.setY((float)(height*.054));
             robotImageView.setY((float)(height*.054));
             //boyImageView.setX((float)(-width*.03));
             monsterImageView.setY((float)(height*.054));
             //monsterImageView.setX((float)(width*.5));
         } else {
-            boyImageView.setY((float)(height*.006));
+            //boyImageView.setY((float)(height*.006));
 
             monsterImageView.setY((float)(height*.006));
 

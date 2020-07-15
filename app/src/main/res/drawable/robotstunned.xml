@@ -1,16 +1,7 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
-    android:oneshot="false">
-    <item android:drawable="@drawable/robotstunned2" android:duration="50" />
-    <item android:drawable="@drawable/robotstunned3" android:duration="50" />
-    <item android:drawable="@drawable/robotstunned4" android:duration="50" />
-    <item android:drawable="@drawable/robotstunned5" android:duration="50" />
-    <item android:drawable="@drawable/robotstunned6" android:duration="50" />
-    <item android:drawable="@drawable/robotstunned7" android:duration="50" />
-    <item android:drawable="@drawable/robotstunned8" android:duration="50" />
-    <item android:drawable="@drawable/robotstunned9" android:duration="50" />
-    <item android:drawable="@drawable/robotstunned10" android:duration="50" />
-    <item android:drawable="@drawable/robotstunned11" android:duration="50" />
-    <item android:drawable="@drawable/robotstunned12" android:duration="50" />
+    android:oneshot="true">
+
+
     <item android:drawable="@drawable/robotstunned13" android:duration="50" />
     <item android:drawable="@drawable/robotstunned14" android:duration="50" />
     <item android:drawable="@drawable/robotstunned15" android:duration="50" />

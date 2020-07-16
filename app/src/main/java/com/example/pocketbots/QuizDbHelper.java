@@ -99,7 +99,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q23);
         Question q24 = new Question( "What does the Decrement (--) operator do?", "Decrease by 1", "Increase by 1", "Subtracts 2 values", "Divides 2 values", 1, 3);
         addQuestion(q24);
-        Question q25 = new Question( "All assignment operators perform _____", "arithmetic", "storing a value", "comparisons", "logical operations", 2, 3);
+        Question q25 = new Question( "All assignment operators perform _____", "arithmetic", "value storage", "comparisons", "logical operations", 2, 3);
         addQuestion(q25);
         Question q26 = new Question( "Which expression is true?", "9.5 <= 9", "4 != 4", "2 >= 2", "5 < 5", 3, 3);
         addQuestion(q26);

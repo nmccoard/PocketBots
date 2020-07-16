@@ -307,7 +307,7 @@ public class BattleScreenActivity extends AppCompatActivity {
 
         } else {
             submitBTN.setText("Finish");
-            win();
+            hitMonster();
             if (level == currentLevel) {
                 currentLevel++;
                 editGame.putInt("currentLevel", currentLevel);
@@ -371,7 +371,7 @@ public class BattleScreenActivity extends AppCompatActivity {
 
     public void hitMonster() {
         // Monster Animation = Hit
-        win();
+        setHitImage();
 
         // Robot Animation = Shooting
         robotImageView.setBackgroundResource(R.drawable.robotshoot);
@@ -379,13 +379,14 @@ public class BattleScreenActivity extends AppCompatActivity {
         robotAnimation.start();
 
         // Monster Animation = Idle after 1000ms
-        monsterImageView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setMonsterAnimation();
-            }
-        }, 1000);
-
+        if (opponentHP > 0) {
+            monsterImageView.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    setMonsterAnimation();
+                }
+            }, 1000);
+        }
         // Robot Animation = Idle after 1000ms
         robotImageView.postDelayed(new Runnable() {
             @Override
@@ -397,7 +398,8 @@ public class BattleScreenActivity extends AppCompatActivity {
         }, 1000);
     }
 
-    public void win() {
+    // SET THE MONSTER IMAGE TO HIT
+    public void setHitImage() {
         switch (level) {
             case 1:
                 monsterImageView.setBackgroundResource(R.drawable.redhit);
@@ -425,6 +427,7 @@ public class BattleScreenActivity extends AppCompatActivity {
         monsterAnimation.start();
     }
 
+    // SET THE HEALTHBAR IMAGES TO CURRENT HEALTH
     public void setHealth(ImageView healthBar, int health) {
 
         switch (health) {

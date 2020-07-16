@@ -97,7 +97,7 @@ public class BattleScreenActivity extends AppCompatActivity {
             params.width *= 1.25;
             params.height *= 1.25;
         }
-        if (currentLevel == 8){
+        if (currentLevel == 8) {
             currentLevel--;
         }
         setMonsterAnimation();
@@ -113,16 +113,16 @@ public class BattleScreenActivity extends AppCompatActivity {
         Log.d("Dimensions", "Width: " + width + " Height: " + height);
 
 
-        if(height < 900 ) {
+        if (height < 900) {
             //boyImageView.setY((float)(height*.054));
-            robotImageView.setY((float)(height*.054));
+            robotImageView.setY((float) (height * .054));
             //boyImageView.setX((float)(-width*.03));
-            monsterImageView.setY((float)(height*.054));
+            monsterImageView.setY((float) (height * .054));
             //monsterImageView.setX((float)(width*.5));
         } else {
             //boyImageView.setY((float)(height*.006));
 
-            monsterImageView.setY((float)(height*.006));
+            monsterImageView.setY((float) (height * .006));
 
         }
 
@@ -145,7 +145,7 @@ public class BattleScreenActivity extends AppCompatActivity {
         textColorDefaultRb = rb1.getTextColors();
 
         QuizDbHelper dbHelper = new QuizDbHelper(this);
-        if(level == 7){
+        if (level == 7) {
             // sets the monsters hp higher and pulls questions from every level
             opponentHP = 10;
             questionList = dbHelper.getAllQuestions();
@@ -173,7 +173,7 @@ public class BattleScreenActivity extends AppCompatActivity {
         });
     }
 
-    private void showNextQuestion(){
+    private void showNextQuestion() {
         // rest the text color back to default
         rb1.setTextColor(textColorDefaultRb);
         rb2.setTextColor(textColorDefaultRb);
@@ -209,106 +209,72 @@ public class BattleScreenActivity extends AppCompatActivity {
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId());
         int answerNum = rbGroup.indexOfChild(rbSelected) + 1;
 
-        if (answerNum == currentQuestion.getAnswerNum()){
-            // reduces opponents HP by a random amount between 2-5.
-            if(level == 7){
+        // CORRECT ANSWER
+        if (answerNum == currentQuestion.getAnswerNum()) {
+            // Reduces hit by 1 if on last monster, and random otherwise
+            if (level == 7) {
                 opponentHP = opponentHP - 1;
             } else {
                 opponentHP = opponentHP - (r.nextInt(6 - 2) + 2);
             }
+            // Set monster health to 0 if he is dead
             if (opponentHP < 0) {
                 opponentHP = 0;
             }
+
+            // set health bar
             setHealth(monsterHealth, opponentHP);
+
+            // Hit animations if monster is not dead
             if (opponentHP > 0) {
                 hitMonster();
             }
 
             // call the player's battle animation
-        } else {
+        } else { // INCORRECT ANSWER
             playerHP = playerHP - 5;
-            //monsterImageView.setX((float)(width*.05));
-            /*monsterImageView.postDelayed(new Runnable() {
+            //robotAnimation.stop();
+
+            // Robot gets hit
+            robotImageView.setBackgroundResource(R.drawable.robothit);
+            robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+            robotAnimation.start();
+
+            robotImageView.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-            monsterImageView.setX((float)(width*1));
+                    // Player is still alive
+                    if (playerHP > 0) {
+                        robotImageView.setBackgroundResource(R.drawable.robotidle);
+                        robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+                        robotAnimation.start();
+                    } else { // Player is defeated
+                        // Robot Stunned Animation
+                        robotImageView.setBackgroundResource(R.drawable.robotstunned);
+                        robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+                        robotAnimation.start();
+
+                        robotImageView.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                // robot stays laying down
+                                robotImageView.setBackgroundResource(R.drawable.robotstunned1);
+                            }
+                        }, 2550);
+                    }
                 }
-            }, 200);
-            setMonsterAnimation();
-            monsterImageView2 = (ImageView) findViewById(R.id.monsterImageView2);
-            monsterImageView2.setBackgroundResource(R.drawable.redidle2);
-            monsterAnimation2 = (AnimationDrawable) monsterImageView2.getBackground();
-            monsterAnimation2.start();
-            monsterImageView2.animate().translationXBy((float) (-width * .5)).setDuration(10000);
-            monsterImageView.animate().translationXBy((float) (width * .5)).setDuration(10000);
-            monsterImageView.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    monsterImageView.setX((float)(width * .5));
-                }
-            }, 1000);
-            setMonsterAnimation();*/
+            }, 800);
 
-            //if(playerHP > 0) {
-               /* boyImageView.setBackgroundResource(R.drawable.boydizzy);
-                boyAnimation = (AnimationDrawable) boyImageView.getBackground();
-                boyAnimation.start();
-                boyImageView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        boyImageView.setBackgroundResource(R.drawable.boyidle);
-                        boyAnimation = (AnimationDrawable) boyImageView.getBackground();
-                        boyAnimation.start();
-                    }
-                }, 1000);*/
-                robotImageView.setBackgroundResource(R.drawable.robothit);
-                robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-                robotAnimation.start();
-                robotImageView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(playerHP > 0) {
-                            robotImageView.setBackgroundResource(R.drawable.robotidle);
-                            robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-                            robotAnimation.start();
-                        } else {
-                            robotImageView.setBackgroundResource(R.drawable.robotstunned);
-                            robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-                            robotAnimation.start();
-                            robotImageView.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    robotImageView.setBackgroundResource(R.drawable.robotstunned1);
-                                }
-                            }, 2550);
-                        }
-                    }
-                }, 800);
-            //} else if
-
-
-            if(playerHP <= 0){
-                /*boyImageView.setBackgroundResource(R.drawable.boyfaint);
-                boyAnimation = (AnimationDrawable) boyImageView.getBackground();
-                boyAnimation.start();
-                boyImageView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        boyImageView.setBackgroundResource(R.drawable.boyfaint5);
-                    }
-                }, 700);*/
-
-
+            // Player is Defeated, Toast and set  health to 0
+            if (playerHP <= 0) {
                 Toast.makeText(this, "Your Pocketbot was DEFEATED :(", Toast.LENGTH_LONG).show();
                 playerHP = 0;
             }
 
-            // Reduce player HP a set amount
-            //playerHP = playerHP - 5;
             Log.d("HP", "The Monsters HP: " + opponentHP + " The Players HP is " + playerHP);
-            setHealth(playerHealth, playerHP);
 
-            // else call the opponents battle animation
+            // set health bar
+            setHealth(playerHealth, playerHP);
         }
 
         showSolution();
@@ -336,13 +302,13 @@ public class BattleScreenActivity extends AppCompatActivity {
         }
 
         // these action will need to be called after the fight animation
-        if(opponentHP > 0) {
+        if (opponentHP > 0) {
             submitBTN.setText("Next");
 
         } else {
             submitBTN.setText("Finish");
             win();
-            if (level == currentLevel){
+            if (level == currentLevel) {
                 currentLevel++;
                 editGame.putInt("currentLevel", currentLevel);
                 editGame.commit();
@@ -352,25 +318,23 @@ public class BattleScreenActivity extends AppCompatActivity {
         }
     }
 
-    //This make it so it goes back to mainActivity
+    //
     private void finishQuiz() {
-        if(currentLevel == 8) {
-
+        if (currentLevel == 8) {
             Intent intent = new Intent(this, EndingActivity.class);
             startActivity(intent);
         } else {
-            //Intent intent = new Intent(this, MapViewActivity.class);
             Intent intent = new Intent(this, MapViewActivity.class);
             startActivity(intent);
         }
     }
 
     @Override
-    public void onBackPressed(){
-        if (backPressedTime + 2000 > System.currentTimeMillis()){
+    public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
             finishQuiz();
         } else {
-            Toast.makeText(this, "Press back again to runaway form the fight", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Press back again to run away from the fight", Toast.LENGTH_SHORT).show();
         }
 
         backPressedTime = System.currentTimeMillis();
@@ -378,7 +342,7 @@ public class BattleScreenActivity extends AppCompatActivity {
 
     public void setMonsterAnimation() {
 
-        switch(level) {
+        switch (level) {
             case 1:
                 monsterImageView.setBackgroundResource(R.drawable.redmonsteridle);
                 break;
@@ -406,17 +370,35 @@ public class BattleScreenActivity extends AppCompatActivity {
     }
 
     public void hitMonster() {
+        // Monster Animation = Hit
         win();
+
+        // Robot Animation = Shooting
+        robotImageView.setBackgroundResource(R.drawable.robotshoot);
+        robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+        robotAnimation.start();
+
+        // Monster Animation = Idle after 1000ms
         monsterImageView.postDelayed(new Runnable() {
             @Override
             public void run() {
-               setMonsterAnimation();
+                setMonsterAnimation();
+            }
+        }, 1000);
+
+        // Robot Animation = Idle after 1000ms
+        robotImageView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                robotImageView.setBackgroundResource(R.drawable.robotidle);
+                robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+                robotAnimation.start();
             }
         }, 1000);
     }
 
     public void win() {
-        switch(level) {
+        switch (level) {
             case 1:
                 monsterImageView.setBackgroundResource(R.drawable.redhit);
                 break;
@@ -445,7 +427,7 @@ public class BattleScreenActivity extends AppCompatActivity {
 
     public void setHealth(ImageView healthBar, int health) {
 
-        switch(health) {
+        switch (health) {
             case 0:
                 healthBar.setBackgroundResource(R.drawable.health0);
                 break;

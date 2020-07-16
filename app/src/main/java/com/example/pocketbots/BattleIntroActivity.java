@@ -66,11 +66,11 @@ public class BattleIntroActivity extends AppCompatActivity {
 
         boyImageView.setBackgroundResource(R.drawable.boyrun);
         boyAnimation = (AnimationDrawable) boyImageView.getBackground();
-        boyImageView.setX(-350);
+        boyImageView.setX(-500);
 
         robotImageView.setBackgroundResource(R.drawable.robotrun);
         robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-        robotImageView.setX(-350);
+        robotImageView.setX(-500);
 
         boyImageView.setY((float)(height*.01));
         boyImageView.setX((float)(-width*.25));
@@ -108,16 +108,17 @@ public class BattleIntroActivity extends AppCompatActivity {
     }
 
     public void exitGame(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    public void saveGame(View view) {
+        boyAnimation.stop();
+        monsterAnimation.stop();
+        robotAnimation.stop();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
     public void battle(View view) {
+        boyAnimation.stop();
+        monsterAnimation.stop();
+        robotAnimation.stop();
         Intent intent = new Intent(this, BattleScreenActivity.class);
         startActivity(intent);
     }

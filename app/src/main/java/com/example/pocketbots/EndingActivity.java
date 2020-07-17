@@ -30,11 +30,11 @@ public class EndingActivity extends AppCompatActivity {
     public ImageView bgImageView;
 
     public ImageView boyImageView;
-    public ImageView boyImageView2;
-    public ImageView boyImageView3;
+    //public ImageView boyImageView2;
+    //public ImageView boyImageView3;
     public AnimationDrawable boyAnimation;
-    public AnimationDrawable boyAnimation2;
-    public AnimationDrawable boyAnimation3;
+    //public AnimationDrawable boyAnimation2;
+    //public AnimationDrawable boyAnimation3;
 
     public ImageView robotImageView;
     public AnimationDrawable robotAnimation;
@@ -57,8 +57,8 @@ public class EndingActivity extends AppCompatActivity {
         mainMenu = (Button) findViewById(R.id.menuBTN);
         mainMenu.setVisibility(View.INVISIBLE);
         boyImageView = (ImageView) findViewById(R.id.boyImageView);
-        boyImageView2 = (ImageView) findViewById(R.id.boyImageView2);
-        boyImageView3 = (ImageView) findViewById(R.id.boyImageView3);
+        //boyImageView2 = (ImageView) findViewById(R.id.boyImageView2);
+        //boyImageView3 = (ImageView) findViewById(R.id.boyImageView3);
         robotImageView = (ImageView) findViewById(R.id.robotImageView);
         gameSettings = getSharedPreferences("GameSettings", Context.MODE_PRIVATE);
         editGame = gameSettings.edit();
@@ -91,7 +91,7 @@ public class EndingActivity extends AppCompatActivity {
         boyImageView.setY((float) (height * .01));
         boyImageView.setX((float) (-width * 1));
         boyAnimation.start();
-        boyImageView.animate().translationXBy((float) (width * 2)).setDuration(10000);
+        boyImageView.animate().translationXBy((float) (width * 2.3)).setDuration(10000);
 
         robotImageView.postDelayed(new Runnable() {
             @Override
@@ -99,22 +99,24 @@ public class EndingActivity extends AppCompatActivity {
                 robotImageView.setScaleX(-1);
                 robotImageView.setBackgroundResource(R.drawable.robotrun);
                 robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-                robotImageView.setY((float) (height * .5));
+                //robotImageView.setY((float) (height * .5));
+                robotImageView.setY((float)(height*.56));
                 robotImageView.setX((float) (-width * 1));
                 robotAnimation.start();
                 robotImageView.animate().translationXBy((float) (width * 2)).setDuration(10000);
             }
-        }, 300);
+        }, 1000);
 
-        boyImageView2.postDelayed(new Runnable() {
+        boyImageView.postDelayed(new Runnable() {
             @Override
             public void run() {
-                boyImageView2.setBackgroundResource(R.drawable.boyrun);
-                boyAnimation2 = (AnimationDrawable) boyImageView2.getBackground();
-                boyImageView2.setY((float) (height * .4));
-                boyImageView2.setX((float) (width * 1));
-                boyAnimation2.start();
-                boyImageView2.animate().translationXBy((float) (-width * 2)).setDuration(10000);
+                boyImageView.setScaleX(-1);
+                boyImageView.setBackgroundResource(R.drawable.boyrun);
+                boyAnimation = (AnimationDrawable) boyImageView.getBackground();
+                //boyImageView.setY((float) (height * .4));
+                boyImageView.setX((float) (width * 1));
+                boyAnimation.start();
+                boyImageView.animate().translationXBy((float) (-width * 2.5)).setDuration(10000);
             }
         }, 10000);
 
@@ -124,51 +126,52 @@ public class EndingActivity extends AppCompatActivity {
                 robotImageView.setScaleX(1);
                 robotImageView.setBackgroundResource(R.drawable.robotrun);
                 robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-                robotImageView.setY((float) (height * .5));
+                //robotImageView.setY((float) (height * .5));
                 robotImageView.setX((float) (width * 1));
                 robotAnimation.start();
                 robotImageView.animate().translationXBy((float) (-width * 2)).setDuration(10000);
             }
         }, 11000);
 
-        boyImageView3.postDelayed(new Runnable() {
+        boyImageView.postDelayed(new Runnable() {
             @Override
             public void run() {
-                boyImageView3.setBackgroundResource(R.drawable.boyrun);
-                boyAnimation3 = (AnimationDrawable) boyImageView3.getBackground();
-                boyImageView3.setY((float) (height * .4));
-                boyImageView3.setX((float) (-width * 1));
-                boyAnimation3.start();
-                boyImageView3.animate().translationXBy((float) (width * 1.4)).setDuration(7000);
-                    boyImageView3.postDelayed(new Runnable() {
+                boyImageView.setScaleX(1);
+                boyImageView.setBackgroundResource(R.drawable.boyrun);
+                boyAnimation = (AnimationDrawable) boyImageView.getBackground();
+                //boyImageView.setY((float) (height * .4));
+                boyImageView.setX((float) (-width * 1));
+                boyAnimation.start();
+                boyImageView.animate().translationXBy((float) (width * 1.4)).setDuration(7000);
+                    boyImageView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                            boyImageView3.setBackgroundResource(R.drawable.boyidle);
-                            boyAnimation3 = (AnimationDrawable) boyImageView3.getBackground();
-                            boyAnimation3.start();
-                            boyImageView3.postDelayed(new Runnable() {
+                            boyImageView.setBackgroundResource(R.drawable.boyidle);
+                            boyAnimation = (AnimationDrawable) boyImageView.getBackground();
+                            boyAnimation.start();
+                            boyImageView.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                boyImageView3.setScaleX(-1);
-                                ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) boyImageView3.getLayoutParams();
+                                boyImageView.setScaleX(-1);
+                                ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) boyImageView.getLayoutParams();
                                 params.width *= 1.75;
                                 params.height *= 1.014;
-                                boyImageView3.setBackgroundResource(R.drawable.boyfaint);
-                                boyAnimation3 = (AnimationDrawable) boyImageView3.getBackground();
-                                boyAnimation3.start();
-                                boyImageView3.animate().translationXBy((float) (-width * .1)).setDuration(700);
-                                boyImageView3.postDelayed(new Runnable() {
+                                boyImageView.setBackgroundResource(R.drawable.boyfaint);
+                                boyAnimation = (AnimationDrawable) boyImageView.getBackground();
+                                boyAnimation.start();
+                                boyImageView.animate().translationXBy((float) (-width * .1)).setDuration(700);
+                                boyImageView.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        boyImageView3.setScaleX(-1);
-                                        boyImageView3.setBackgroundResource(R.drawable.boyfaint5);
+                                        boyImageView.setScaleX(-1);
+                                        boyImageView.setBackgroundResource(R.drawable.boyfaint5);
                                         //boyImageView3.animate().translationXBy((float) (width * 1.45)).setDuration(100);
                                         //boyAnimation3.start();
                                         mainMenu.setVisibility(View.VISIBLE);
                                     }
                                 }, 700);
                             }
-                        }, 5000);
+                        }, 1400);
                     }
                 }, 7000);
             }
@@ -177,12 +180,13 @@ public class EndingActivity extends AppCompatActivity {
         robotImageView.postDelayed(new Runnable() {
             @Override
             public void run() {
+                //robotImageView.setScaleX(1);
                 robotImageView.setBackgroundResource(R.drawable.robotrun);
                 robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-                robotImageView.setY((float) (height * .5));
+                //robotImageView.setY((float) (height * .5));
                 robotImageView.setX((float) (width * 1));
                 robotAnimation.start();
-                robotImageView.animate().translationXBy((float) (-width * .5)).setDuration(1000);
+                robotImageView.animate().translationXBy((float) (-width * .5)).setDuration(1500);
                 robotImageView.postDelayed(new Runnable() {
                     @Override
                     public void run() {

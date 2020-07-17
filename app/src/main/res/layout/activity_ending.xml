@@ -9,15 +9,6 @@
     android:background="@drawable/bg">
 
 
-    //ImageView
-        //android:id="@+id/bgImageView"
-        //android:layout_width="wrap_content"
-        //android:layout_height="match_parent"
-        //android:scaleType="centerCrop"
-        //app:srcCompat="@drawable/background"
-        //tools:layout_editor_absoluteX="0dp"
-        //tools:layout_editor_absoluteY="-16dp" />
-
     <ImageView
         android:id="@+id/robotImageView"
         android:layout_width="169dp"
@@ -58,34 +49,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/boyImageView2"
-        android:layout_width="105dp"
-        android:layout_height="144dp"
-        android:layout_marginBottom="52dp"
-        android:scaleX="-1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="156dp" />
-
-    <ImageView
-        android:id="@+id/boyImageView3"
-        android:layout_width="105dp"
-        android:layout_height="144dp"
-        android:layout_marginBottom="52dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="156dp" />
-
     <Button
         android:id="@+id/menuBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:background="#FDC51E"
+        android:layout_width="146dp"
+        android:layout_height="66dp"
+        android:layout_marginBottom="165dp"
+        android:background="#CCFFC107"
+        android:fontFamily="@font/press_start_2p"
         android:onClick="exitGame"
-        android:text="Main Menu"
+        android:text="The End"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/logoView"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,7 +22,7 @@
         android:id="@+id/boyImageView"
         android:layout_width="105dp"
         android:layout_height="144dp"
-        android:layout_marginStart="156dp"
+        android:layout_marginStart="100dp"
         android:layout_marginBottom="52dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -38,13 +38,15 @@
 
     <Button
         android:id="@+id/battleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="121dp"
+        android:layout_height="54dp"
         android:layout_marginStart="307dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="307dp"
+        android:background="#B3FFEB3B"
         android:onClick="battle"
         android:text="begin battle"
+        android:textColor="#F2333333"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -53,10 +55,11 @@
         android:id="@+id/robotImageView"
         android:layout_width="169dp"
         android:layout_height="111dp"
+        android:layout_marginStart="160dp"
         android:layout_marginBottom="52dp"
         android:scaleX="-1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/boyImageView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

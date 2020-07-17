@@ -36,8 +36,8 @@ public class BattleScreenActivity extends AppCompatActivity {
     private int level;
     private int currentLevel;
 
-    public int height;
-    public int width;
+    public int screenHeight;
+    public int screenWidth;
 
     private int opponentHP;
     private int playerHP = 10;
@@ -55,9 +55,6 @@ public class BattleScreenActivity extends AppCompatActivity {
     public SharedPreferences gameSettings;
     public SharedPreferences.Editor editGame;
 
-    public ImageView boyImageView;
-    public AnimationDrawable boyAnimation;
-
     public ImageView robotImageView;
     public AnimationDrawable robotAnimation;
 
@@ -67,96 +64,94 @@ public class BattleScreenActivity extends AppCompatActivity {
     public ImageView playerHealth;
     public ImageView monsterHealth;
 
-
+    /******************************************
+     *   ON CREATE
+     ******************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle_screen);
 
-        // Check the current level
-        gameSettings = getSharedPreferences("GameSettings", Context.MODE_PRIVATE);
-        editGame = gameSettings.edit();
-        level = gameSettings.getInt("level", 0);
-        currentLevel = gameSettings.getInt("currentLevel", 1);
-
-        // Player and Opponent Images and Animations
-        //boyImageView = (ImageView) findViewById(R.id.boyImageView);
-        //boyImageView.setBackgroundResource(R.drawable.boyidle);
-        //boyAnimation = (AnimationDrawable) boyImageView.getBackground();
-        //boyAnimation.start();
-
+        // Find Image Views
         robotImageView = (ImageView) findViewById(R.id.robotImageView);
-        robotImageView.setBackgroundResource(R.drawable.robotidle);
-        robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-        robotAnimation.start();
-
         monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
-
-        if (level >= 7) {
-            ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) monsterImageView.getLayoutParams();
-            params.width *= 1.25;
-            params.height *= 1.25;
-        }
-        if (currentLevel == 8) {
-            currentLevel--;
-        }
-        setMonsterAnimation();
-
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int height = displayMetrics.heightPixels;
-        int width = displayMetrics.widthPixels;
-        // 720 x 1334  - Brian          - perfect   .054
-        // 1080 x 1794 - Nate Pixel 2   - sinking   .054
-        // 1080 x 2047 - Briana         - perfect   .007
-        // 1080 x 2088 - Nate Pixel 3a  - floating  .007
-        Log.d("Dimensions", "Width: " + width + " Height: " + height);
-
-
-        if (height < 900) {
-            //boyImageView.setY((float)(height*.054));
-            robotImageView.setY((float) (height * .054));
-            //boyImageView.setX((float)(-width*.03));
-            monsterImageView.setY((float) (height * .054));
-            //monsterImageView.setX((float)(width*.5));
-        } else {
-            //boyImageView.setY((float)(height*.006));
-
-            monsterImageView.setY((float) (height * .006));
-
-        }
-
-
-        // Set Health Points and images
         playerHealth = (ImageView) findViewById(R.id.playerHealth);
         monsterHealth = (ImageView) findViewById(R.id.monsterHealth);
-        playerHealth.setBackgroundResource(R.drawable.health10);
-        monsterHealth.setBackgroundResource(R.drawable.health10);
 
+        // Find Quiz Image Views
         textViewQuestion = findViewById(R.id.TextView_Question);
-
         rbGroup = findViewById(R.id.radioGroup);
         rb1 = findViewById(R.id.radioButton1);
         rb2 = findViewById(R.id.radioButton2);
         rb3 = findViewById(R.id.radioButton3);
         rb4 = findViewById(R.id.radioButton4);
         submitBTN = findViewById(R.id.SubmitBTN);
-
         textColorDefaultRb = rb1.getTextColors();
 
+        // Set the current level
+        gameSettings = getSharedPreferences("GameSettings", Context.MODE_PRIVATE);
+        editGame = gameSettings.edit();
+        level = gameSettings.getInt("level", 0);
+        currentLevel = gameSettings.getInt("currentLevel", 1);
+
+        // Cannot go past Level 7
+        if (currentLevel == 8) {
+            currentLevel--;
+        }
+    }
+
+    /******************************************
+     *   START GAME
+     ******************************************/
+    protected void onStart() {
+        super.onStart();
+
+        // Make Monster Bigger if Level 7
+        if (level >= 7) {
+            ViewGroup.LayoutParams monsterParams = (ViewGroup.LayoutParams) monsterImageView.getLayoutParams();
+            monsterParams.width *= 1.25;
+            monsterParams.height *= 1.25;
+        }
+
+        // Get Height and Width of Screen and Move Robot and Monster as Necessary
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        screenHeight = displayMetrics.heightPixels;
+        screenWidth = displayMetrics.widthPixels;
+        // 720 x 1334  - Brian          - perfect   .054
+        // 1080 x 1794 - Nate Pixel 2   - sinking   .054
+        // 1080 x 2047 - Briana         - perfect   .007
+        // 1080 x 2088 - Nate Pixel 3a  - floating  .007
+        Log.d("Dimensions", "Width: " + screenWidth + " Height: " + screenHeight);
+
+        if (screenHeight < 900) {
+            robotImageView.setY((float) (screenHeight * .054));
+            monsterImageView.setY((float) (screenHeight * .054));
+        } else {
+            robotImageView.setY((float) (screenHeight * .006));
+            monsterImageView.setY((float) (screenHeight * .006));
+        }
+
+        // Begin Idle Animations
+        setRobotIdle();
+        setMonsterIdle();
+
+        // Set Background fro Health Bars
+        opponentHP = 10;
+        playerHealth.setBackgroundResource(R.drawable.health10);
+        monsterHealth.setBackgroundResource(R.drawable.health10);
+
+        // Begin Correct Quiz for the Current Level
         QuizDbHelper dbHelper = new QuizDbHelper(this);
         if (level == 7) {
-            // sets the monsters hp higher and pulls questions from every level
-            opponentHP = 10;
             questionList = dbHelper.getAllQuestions();
         } else {
-            opponentHP = 10;
             questionList = dbHelper.getQuestions(level);
         }
         Collections.shuffle(questionList);
-
         showNextQuestion();
 
+        // Set On Click Listener for Submit Button
         submitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,6 +168,10 @@ public class BattleScreenActivity extends AppCompatActivity {
         });
     }
 
+    /******************************************
+     *   SHOW NEXT QUESTION
+     *   Shows the next question
+     ******************************************/
     private void showNextQuestion() {
         // rest the text color back to default
         rb1.setTextColor(textColorDefaultRb);
@@ -202,6 +201,11 @@ public class BattleScreenActivity extends AppCompatActivity {
         }
     }
 
+    /******************************************
+     *   CHECK ANSWER
+     *   Checks the answer to the question,
+     *   calls hit animations, sets health bars.
+     ******************************************/
     private void checkAnswer() {
         answered = true;
         Random r = new Random();
@@ -229,57 +233,29 @@ public class BattleScreenActivity extends AppCompatActivity {
             if (opponentHP > 0) {
                 hitMonster();
             }
-
-            // call the player's battle animation
-        } else { // INCORRECT ANSWER
+            // INCORRECT ANSWER
+        } else {
+            // Player loses 5 hp and gets hit
             playerHP = playerHP - 5;
-            //robotAnimation.stop();
+            hitRobot();
 
-            // Robot gets hit
-            robotImageView.setBackgroundResource(R.drawable.robothit);
-            robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-            robotAnimation.start();
-
-            robotImageView.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // Player is still alive
-                    if (playerHP > 0) {
-                        robotImageView.setBackgroundResource(R.drawable.robotidle);
-                        robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-                        robotAnimation.start();
-                    } else { // Player is defeated
-                        // Robot Stunned Animation
-                        robotImageView.setBackgroundResource(R.drawable.robotstunned);
-                        robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-                        robotAnimation.start();
-
-                        robotImageView.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                // robot stays laying down
-                                robotImageView.setBackgroundResource(R.drawable.robotstunned1);
-                            }
-                        }, 2550);
-                    }
-                }
-            }, 800);
-
-            // Player is Defeated, Toast and set  health to 0
+            // Player is Defeated, Toast and set health to 0
             if (playerHP <= 0) {
                 Toast.makeText(this, "Your Pocketbot was DEFEATED :(", Toast.LENGTH_LONG).show();
                 playerHP = 0;
             }
 
             Log.d("HP", "The Monsters HP: " + opponentHP + " The Players HP is " + playerHP);
-
             // set health bar
             setHealth(playerHealth, playerHP);
         }
-
         showSolution();
     }
 
+    /******************************************
+     *   SHOW SOLUTION
+     *   Right answer is green, wrong are red
+     ******************************************/
     private void showSolution() {
         rb1.setTextColor(Color.RED);
         rb2.setTextColor(Color.RED);
@@ -304,7 +280,6 @@ public class BattleScreenActivity extends AppCompatActivity {
         // these action will need to be called after the fight animation
         if (opponentHP > 0) {
             submitBTN.setText("Next");
-
         } else {
             submitBTN.setText("Finish");
             hitMonster();
@@ -314,11 +289,13 @@ public class BattleScreenActivity extends AppCompatActivity {
                 editGame.commit();
                 Log.d("Current Level", "Next level is " + currentLevel);
             }
-
         }
     }
 
-    //
+    /******************************************
+     *   FINISH QUIZ
+     *   Go to Map View or Ending Activity
+     ******************************************/
     private void finishQuiz() {
         if (currentLevel == 8) {
             Intent intent = new Intent(this, EndingActivity.class);
@@ -329,6 +306,10 @@ public class BattleScreenActivity extends AppCompatActivity {
         }
     }
 
+    /******************************************
+     *   ON BACK PRESSED
+     *   Show toast when back button is pressed
+     ******************************************/
     @Override
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()) {
@@ -340,8 +321,21 @@ public class BattleScreenActivity extends AppCompatActivity {
         backPressedTime = System.currentTimeMillis();
     }
 
-    public void setMonsterAnimation() {
+    /******************************************
+     *   SET ROBOT IDLE ANIMATION
+     *   Set robot animation to idling
+     ******************************************/
+    public void setRobotIdle() {
+        robotImageView.setBackgroundResource(R.drawable.robotidle);
+        robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+        robotAnimation.start();
+    }
 
+    /******************************************
+     *   SET MONSTER IDLE ANIMATION
+     *   Set monster animation to idling
+     ******************************************/
+    public void setMonsterIdle() {
         switch (level) {
             case 1:
                 monsterImageView.setBackgroundResource(R.drawable.redmonsteridle);
@@ -369,11 +363,16 @@ public class BattleScreenActivity extends AppCompatActivity {
         monsterAnimation.start();
     }
 
+    /******************************************
+     *   HIT MONSTER
+     *   Robot shoots the monster
+     ******************************************/
     public void hitMonster() {
         // Monster Animation = Hit
-        setHitImage();
+        setMonsterHit();
 
         // Robot Animation = Shooting
+        robotAnimation.stop();
         robotImageView.setBackgroundResource(R.drawable.robotshoot);
         robotAnimation = (AnimationDrawable) robotImageView.getBackground();
         robotAnimation.start();
@@ -383,7 +382,7 @@ public class BattleScreenActivity extends AppCompatActivity {
             monsterImageView.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    setMonsterAnimation();
+                    setMonsterIdle();
                 }
             }, 1000);
         }
@@ -391,6 +390,7 @@ public class BattleScreenActivity extends AppCompatActivity {
         robotImageView.postDelayed(new Runnable() {
             @Override
             public void run() {
+                robotAnimation.stop();
                 robotImageView.setBackgroundResource(R.drawable.robotidle);
                 robotAnimation = (AnimationDrawable) robotImageView.getBackground();
                 robotAnimation.start();
@@ -398,8 +398,12 @@ public class BattleScreenActivity extends AppCompatActivity {
         }, 1000);
     }
 
-    // SET THE MONSTER IMAGE TO HIT
-    public void setHitImage() {
+    /******************************************
+     *   SET MONSTER HIT ANIMATION
+     *   Monster animation is set to hit
+     ******************************************/
+    public void setMonsterHit() {
+        monsterAnimation.stop();
         switch (level) {
             case 1:
                 monsterImageView.setBackgroundResource(R.drawable.redhit);
@@ -427,7 +431,66 @@ public class BattleScreenActivity extends AppCompatActivity {
         monsterAnimation.start();
     }
 
-    // SET THE HEALTHBAR IMAGES TO CURRENT HEALTH
+    /******************************************
+     *   HIT ROBOT
+     *   Monster hits the robot
+     ******************************************/
+    public void hitRobot() {
+
+        // Monster Attacks
+        monsterImageView.animate().translationX((float)(-screenWidth * .34)).setDuration(200);
+        monsterImageView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                monsterImageView.animate().translationXBy((float) (screenWidth * .34)).setDuration(200);
+            }
+        }, 200);
+
+        // Robot Gets Hit
+        robotImageView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                robotAnimation.stop();
+                robotImageView.setBackgroundResource(R.drawable.robothit);
+                robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+                robotAnimation.start();
+            }
+        }, 200);
+
+        // Set Robot back to Idle or Stunned if dead
+        robotImageView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Player is still alive
+                if (playerHP > 0) {
+                    robotAnimation.stop();
+                    robotImageView.setBackgroundResource(R.drawable.robotidle);
+                    robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+                    robotAnimation.start();
+                } else { // Player is defeated
+                    // Robot Stunned Animation
+                    robotAnimation.stop();
+                    robotImageView.setBackgroundResource(R.drawable.robotstunned);
+                    robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+                    robotAnimation.start();
+
+                    robotImageView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // robot stays laying down
+                            robotImageView.setBackgroundResource(R.drawable.robotstunned1);
+                            robotAnimation.stop();
+                        }
+                    }, 2550);
+                }
+            }
+        }, 800);
+    }
+
+    /******************************************
+     *   SET HEALTH BAR ANIMATIONS
+     *   Health bars are set based on HP values
+     ******************************************/
     public void setHealth(ImageView healthBar, int health) {
 
         switch (health) {
@@ -466,6 +529,9 @@ public class BattleScreenActivity extends AppCompatActivity {
         }
     }
 
+    /******************************************
+     *   ON STOP
+     ******************************************/
     @Override
     protected void onStop() {
         super.onStop();

@@ -33,6 +33,10 @@ public class BattleIntroActivity extends AppCompatActivity {
     public AnimationDrawable monsterAnimation;
     public AnimationDrawable robotAnimation;
 
+
+    /******************************************
+     *   ON CREATE
+     ******************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,62 +48,71 @@ public class BattleIntroActivity extends AppCompatActivity {
         height = displayMetrics.heightPixels;
         width = displayMetrics.widthPixels;
 
+        // Set Image Views
         bgImageView = (ImageView) findViewById(R.id.bgImageView);
         battleButton = (Button) findViewById(R.id.battleButton);
         boyImageView = (ImageView) findViewById(R.id.boyImageView);
         monsterImageView = (ImageView) findViewById(R.id.monsterImageView);
         robotImageView = (ImageView) findViewById(R.id.robotImageView);
 
+        // Get Game Level
         gameSettings = getSharedPreferences("GameSettings", Context.MODE_PRIVATE);
         editGame = gameSettings.edit();
         level = gameSettings.getInt("level", 0);
+    }
+
+    /******************************************
+     *   ON START
+     ******************************************/
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // Set Boy Animation
+        boyImageView.setBackgroundResource(R.drawable.boyrun);
+        boyAnimation = (AnimationDrawable) boyImageView.getBackground();
+        boyImageView.setY((float)(height*.01));
+        boyImageView.setX((float)(-width*.3));
+
+        // Set Robot Animation
+        robotImageView.setBackgroundResource(R.drawable.robotrun);
+        robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+        robotImageView.setX(-500);
+        robotImageView.setY((float)(height*.01));
+
+        // Set Monster Animation, make it bigger if level 7
         if (level == 7) {
             ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) monsterImageView.getLayoutParams();
             params.width *= 1.25;
             params.height *= 1.25;
         }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        boyImageView.setBackgroundResource(R.drawable.boyrun);
-        boyAnimation = (AnimationDrawable) boyImageView.getBackground();
-        boyImageView.setX(-500);
-
-        robotImageView.setBackgroundResource(R.drawable.robotrun);
-        robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-        robotImageView.setX(-500);
-
-        boyImageView.setY((float)(height*.01));
-        boyImageView.setX((float)(-width*.3));
-
-        robotImageView.setY((float)(height*.01));
-
         monsterImageView.setY((float)(height*.01));
         monsterImageView.setX((float)(width*.05));
-
         setMonsterAnimation();
 
+        // Start animations and translations
         boyAnimation.start();
         robotAnimation.start();
         monsterAnimation.start();
         boyImageView.animate().translationXBy((float)(width*.35)).setDuration(3000);
         robotImageView.animate().translationXBy((float)(width*.35)).setDuration(3000);
 
+        // Set Boy to idle after he runs on screen
         boyImageView.postDelayed(new Runnable() {
             @Override
             public void run() {
+                boyAnimation.stop();
                 boyImageView.setBackgroundResource(R.drawable.boyidle);
                 boyAnimation = (AnimationDrawable) boyImageView.getBackground();
                 boyAnimation.start();
             }
         }, 3000);
 
+        // Set Robot to Idle after he runs on screen
         robotImageView.postDelayed(new Runnable() {
             @Override
             public void run() {
+                robotAnimation.stop();
                 robotImageView.setBackgroundResource(R.drawable.robotidle);
                 robotAnimation = (AnimationDrawable) robotImageView.getBackground();
                 robotAnimation.start();
@@ -107,6 +120,10 @@ public class BattleIntroActivity extends AppCompatActivity {
         }, 3000);
     }
 
+    /******************************************
+     *   EXIT GAME
+     *   Stop animations and move to Main Activity
+     ******************************************/
     public void exitGame(View view) {
         boyAnimation.stop();
         monsterAnimation.stop();
@@ -115,6 +132,10 @@ public class BattleIntroActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /******************************************
+     *   BATTLE
+     *   Stop animations and move on to battle screen
+     ******************************************/
     public void battle(View view) {
         boyAnimation.stop();
         monsterAnimation.stop();
@@ -123,6 +144,10 @@ public class BattleIntroActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /******************************************
+     *   SET MONSTER ANIMATION
+     *   Set the monster animation to idle
+     ******************************************/
     public void setMonsterAnimation() {
 
         switch(level) {
@@ -148,10 +173,12 @@ public class BattleIntroActivity extends AppCompatActivity {
                 monsterImageView.setBackgroundResource(R.drawable.orangeidle);
                 break;
         }
-
         monsterAnimation = (AnimationDrawable) monsterImageView.getBackground();
     }
 
+    /******************************************
+     *   ON STOP
+     ******************************************/
     @Override
     protected void onStop() {
         super.onStop();

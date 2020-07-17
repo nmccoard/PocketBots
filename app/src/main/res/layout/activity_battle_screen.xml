@@ -100,7 +100,7 @@
         android:layout_marginBottom="14dp"
         android:background="#8BC34A"
         android:text="submit"
-        android:textColor="#555555"
+        android:textColor="#2B2B2B"
         android:textColorHighlight="#3A3939"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

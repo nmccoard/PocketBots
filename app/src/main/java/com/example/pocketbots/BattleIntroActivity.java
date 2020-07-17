@@ -154,11 +154,9 @@ public class BattleIntroActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-
         super.onStop();
         boyAnimation.stop();
         monsterAnimation.stop();
         robotAnimation.stop();
-
     }
 }

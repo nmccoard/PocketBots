@@ -1,0 +1,16 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item android:drawable="@drawable/robotmelee1" android:duration="50" />
+    <item android:drawable="@drawable/robotmelee3" android:duration="50" />
+    <item android:drawable="@drawable/robotmelee5" android:duration="50" />
+    <item android:drawable="@drawable/robotmelee7" android:duration="50" />
+    <item android:drawable="@drawable/robotmelee9" android:duration="50" />
+    <item android:drawable="@drawable/robotmelee11" android:duration="50" />
+    <item android:drawable="@drawable/robotmelee13" android:duration="50" />
+    <item android:drawable="@drawable/robotmelee15" android:duration="50" />
+    <item android:drawable="@drawable/robotmelee17" android:duration="50" />
+    <item android:drawable="@drawable/robotmelee19" android:duration="50" />
+    <item android:drawable="@drawable/robotmelee21" android:duration="50" />
+    <item android:drawable="@drawable/robotmelee23" android:duration="50" />
+    <item android:drawable="@drawable/robotmelee24" android:duration="50" />
+</animation-list>

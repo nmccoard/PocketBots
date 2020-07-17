@@ -468,11 +468,9 @@ public class BattleScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-
         super.onStop();
         monsterAnimation.stop();
         robotAnimation.stop();
-
     }
 
 }

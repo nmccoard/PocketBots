@@ -19,6 +19,15 @@
         //tools:layout_editor_absoluteY="-16dp" />
 
     <ImageView
+        android:id="@+id/robotImageView"
+        android:layout_width="169dp"
+        android:layout_height="111dp"
+        android:layout_marginBottom="52dp"
+        android:scaleX="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="261dp" />
+
+    <ImageView
         android:id="@+id/logoView"
         android:layout_width="735dp"
         android:layout_height="212dp"
@@ -54,6 +63,7 @@
         android:layout_width="105dp"
         android:layout_height="144dp"
         android:layout_marginBottom="52dp"
+        android:scaleX="-1"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="156dp" />
 

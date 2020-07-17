@@ -73,7 +73,7 @@ public class BattleIntroActivity extends AppCompatActivity {
         robotImageView.setX(-500);
 
         boyImageView.setY((float)(height*.01));
-        boyImageView.setX((float)(-width*.25));
+        boyImageView.setX((float)(-width*.3));
 
         robotImageView.setY((float)(height*.01));
 
@@ -154,11 +154,9 @@ public class BattleIntroActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-
         super.onStop();
         boyAnimation.stop();
         monsterAnimation.stop();
         robotAnimation.stop();
-
     }
 }

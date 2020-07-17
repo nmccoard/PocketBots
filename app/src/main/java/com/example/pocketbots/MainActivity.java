@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         editGame.commit();
       
         Intent intent = new Intent(MainActivity.this, MapViewActivity.class);
+        //Intent intent = new Intent(MainActivity.this, EndingActivity.class);
         startActivity(intent);
     }
 

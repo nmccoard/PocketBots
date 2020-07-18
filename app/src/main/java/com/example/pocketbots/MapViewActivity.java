@@ -14,7 +14,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-
+/******************************************
+ *   MAP VIEW ACTIVITY
+ *   The screen which allows the user to select the level that they wish to play.
+ ******************************************/
 public class MapViewActivity extends AppCompatActivity {
 
     private Button lvlBtn1;

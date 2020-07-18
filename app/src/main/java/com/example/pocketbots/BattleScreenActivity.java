@@ -27,7 +27,11 @@ import android.widget.Toast;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-
+/******************************************
+ *   BATTLE SCREEN ACTIVITY
+ *   The screen where the Java questions are asked, and the animations depend on
+ *   whether the question was answered correctly.
+ ******************************************/
 public class BattleScreenActivity extends AppCompatActivity {
     private TextView textViewQuestion;
     private RadioGroup rbGroup;

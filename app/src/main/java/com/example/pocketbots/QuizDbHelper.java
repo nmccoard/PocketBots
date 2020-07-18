@@ -11,6 +11,10 @@ import com.example.pocketbots.QuizContract.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/******************************************
+ *   QuizDbHelper
+ *   this class handles all the functions that directly interacting with database (SQLite).
+ ******************************************/
 public class QuizDbHelper extends SQLiteOpenHelper {
     // setting the database name
     private static final String DATABASE_NAME = "BattleScreenQuestions.db";

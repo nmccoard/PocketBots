@@ -1,5 +1,8 @@
 package com.example.pocketbots;
 
+/******************************************
+ *   Simple Question class so we can have question objects
+ ******************************************/
 public class Question {
     private String question;
     private String option1;
@@ -11,6 +14,7 @@ public class Question {
 
     public Question() {}
 
+    // Constructor
     public Question(String question, String option1, String option2, String option3,
                     String option4, int answerNum, int levelID) {
         this.question = question;
@@ -22,6 +26,7 @@ public class Question {
         this.levelID = levelID;
     }
 
+    // Simple getters and setters
     public String getQuestion() {
         return question;
     }

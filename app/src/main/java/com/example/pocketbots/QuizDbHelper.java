@@ -12,8 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuizDbHelper extends SQLiteOpenHelper {
+    // setting the database name
     private static final String DATABASE_NAME = "BattleScreenQuestions.db";
-    // Change the database version when you make changes to the database, like adding questions.
+    // Change the database version when you make changes to the database. When the version changes it will delete the database and rebuild it
     private static final int DATABASE_VERSION = 15;
 
     private SQLiteDatabase db;
@@ -24,6 +25,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        // create the database and set up the table
         this.db = db;
 
         final String SQL_CREAT_QUESTION_TABLE = "CREATE TABLE " +
@@ -50,7 +52,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-        // this is where we add the questions. Its currently filled with dummy questions for testing.
+        // this is where we add the questions.
         Question q1 = new Question("What set of brackets do we use to mark the beginning and end of a block of code?",  "{}", "[]", "()", "<>", 1, 1);
         addQuestion(q1);
         Question q2 = new Question("Every line of code must run in a _____.", "constructor", "class", "function", "block of code {}", 2, 1);
@@ -188,6 +190,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     public List<com.example.pocketbots.Question> getAllQuestions() {
+        // this will pull all the questions from the data base and returns them in a list
         List<Question> questionList = new ArrayList<>();
         db = getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + QuestionsTable.TABLE_NAME, null);
@@ -205,12 +208,13 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 questionList.add(question);
             } while(c.moveToNext());
         }
-
+        // be kind and always close your database when your finished
         c.close();
         return questionList;
     }
 
     public List<Question> getQuestions(int  lvl) {
+        // this will gather all the question of a given level and return them in a list
         String level = Integer.toString(lvl);
         List<Question> questionList = new ArrayList<>();
         db = getReadableDatabase();
@@ -232,7 +236,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 questionList.add(question);
             } while(c.moveToNext());
         }
-
+        // be kind and always close your database when your finished
         c.close();
         return questionList;
     }

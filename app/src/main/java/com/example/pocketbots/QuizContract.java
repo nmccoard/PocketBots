@@ -9,7 +9,7 @@ public final class QuizContract {
 
     public static class QuestionsTable {
         /**
-         * Setting up the database constant variables
+         * Setting up the database constant variables to make building and pulling from the db easier
          */
         public static final String TABLE_NAME = "battle_screen_questions";
         public static final String _ID = "_id";

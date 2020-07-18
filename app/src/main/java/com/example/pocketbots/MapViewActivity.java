@@ -245,4 +245,14 @@ public class MapViewActivity extends AppCompatActivity {
         }
     }
 
+    /******************************************
+     *   ON BACK PRESSED
+     *   now when you touch the back arrow on your phone it will go back to the menu screen
+     ******************************************/
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 }

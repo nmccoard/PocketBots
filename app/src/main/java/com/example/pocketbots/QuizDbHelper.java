@@ -56,7 +56,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-        // this is where we add the questions.
+        // this is where we add the questions so they can be pushed into the table after creation.
         Question q1 = new Question("What set of brackets do we use to mark the beginning and end of a block of code?",  "{}", "[]", "()", "<>", 1, 1);
         addQuestion(q1);
         Question q2 = new Question("Every line of code must run in a _____.", "constructor", "class", "function", "block of code {}", 2, 1);

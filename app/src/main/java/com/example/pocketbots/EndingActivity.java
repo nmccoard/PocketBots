@@ -16,7 +16,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-
+/******************************************
+ *   ENDING ACTIVITY CLASS
+ *   Animations for the ending game credits.
+ ******************************************/
 public class EndingActivity extends AppCompatActivity {
 
     public Button mainMenu;

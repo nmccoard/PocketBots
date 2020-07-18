@@ -453,20 +453,30 @@ public class BattleScreenActivity extends AppCompatActivity {
      ******************************************/
     public void setMonsterHit() {
         monsterAnimation.stop();
+        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) monsterImageView.getLayoutParams();
         switch (level) {
             case 1:
+                params.width *= 1.037;  //change width, since hit png is wider
+                params.height *= 1.123; //change height, since hit png is taller
                 monsterImageView.setBackgroundResource(R.drawable.redhit);
                 break;
             case 2:
+                params.width *= 1.179;  //change width, since hit png is wider
+                params.height *= 1.134; //change height, since hit png is taller
                 monsterImageView.setBackgroundResource(R.drawable.skullhit);
                 break;
             case 3:
+                params.height *= 1.046; //change height, since hit png is taller
                 monsterImageView.setBackgroundResource(R.drawable.bluehit);
                 break;
             case 4:
+                params.width *= 1.19;  //change width, since hit png is wider
+                params.height *= 1.137; //change height, since hit png is taller
                 monsterImageView.setBackgroundResource(R.drawable.greyhit);
                 break;
             case 5:
+                params.width *= 1.127;  //change width, since hit png is wider
+                params.height *= 1.157; //change height, since hit png is taller
                 monsterImageView.setBackgroundResource(R.drawable.grhit);
                 break;
             case 6:

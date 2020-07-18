@@ -1,0 +1,46 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+
+
+    <item android:drawable="@drawable/robotstunned13" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned15" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned17" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned19" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned21" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned23" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned25" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned27" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned29" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned31" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned33" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned35" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned37" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned39" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned41" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned43" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned45" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned47" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned49" android:duration="100" />
+
+    <item android:drawable="@drawable/robotstunned51" android:duration="100" />
+    <item android:drawable="@drawable/robotstunned1" android:duration="100" />
+
+</animation-list>

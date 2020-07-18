@@ -1,0 +1,19 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+    <item android:drawable="@drawable/robothit1" android:duration="50" />
+    <item android:drawable="@drawable/robothit2" android:duration="50" />
+    <item android:drawable="@drawable/robothit3" android:duration="50" />
+    <item android:drawable="@drawable/robothit4" android:duration="50" />
+    <item android:drawable="@drawable/robothit5" android:duration="50" />
+    <item android:drawable="@drawable/robothit6" android:duration="50" />
+    <item android:drawable="@drawable/robothit7" android:duration="50" />
+    <item android:drawable="@drawable/robothit8" android:duration="50" />
+    <item android:drawable="@drawable/robothit9" android:duration="50" />
+    <item android:drawable="@drawable/robothit10" android:duration="50" />
+    <item android:drawable="@drawable/robothit11" android:duration="50" />
+    <item android:drawable="@drawable/robothit12" android:duration="50" />
+    <item android:drawable="@drawable/robothit13" android:duration="50" />
+    <item android:drawable="@drawable/robothit14" android:duration="50" />
+    <item android:drawable="@drawable/robothit15" android:duration="50" />
+    <item android:drawable="@drawable/robothit16" android:duration="50" />
+</animation-list>

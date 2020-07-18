@@ -74,11 +74,6 @@ public class EndingActivity extends AppCompatActivity {
         gameSettings = getSharedPreferences("GameSettings", Context.MODE_PRIVATE);
         editGame = gameSettings.edit();
         level = gameSettings.getInt("level", 0);
-        if (level == 8) {
-            ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) boyImageView.getLayoutParams();
-            params.width *= 1.25;
-            params.height *= 1.25;
-        }
 
         // SoundPool Implementation (This is for SFX/Hitsounds, etc.)
         // Due to the old method and the new method we need to determine
@@ -124,20 +119,20 @@ public class EndingActivity extends AppCompatActivity {
         super.onStart();
 
         // Set Credits Animation
-        congratView.setY((float) (height * 1));
-        congratView.setX((float) (width * 0));
+        congratView.setY((float) (height));
+        congratView.setX((float) (0));
         congratView.animate().translationYBy((float)(-height * 2)).setDuration(20000);
 
         // Set Logo Animation
         logoView.setY((float) (height * 2));
-        logoView.setX((float) (width * 0));
+        logoView.setX((float) (0));
         logoView.animate().translationYBy((float)(-height * 2)).setDuration(25000);
 
         // Set Boy Animation
         boyImageView.setBackgroundResource(R.drawable.boyrun);
         boyAnimation = (AnimationDrawable) boyImageView.getBackground();
         boyImageView.setY((float) (height * .01));
-        boyImageView.setX((float) (-width * 1));
+        boyImageView.setX((float) (-width));
 
         // 1st Boy Run, from left to right
         boyAnimation.start();
@@ -151,7 +146,7 @@ public class EndingActivity extends AppCompatActivity {
                 robotImageView.setBackgroundResource(R.drawable.robotrun);
                 robotAnimation = (AnimationDrawable) robotImageView.getBackground();
                 robotImageView.setY((float)(height*.56));
-                robotImageView.setX((float) (-width * 1));
+                robotImageView.setX((float) (-width));
                 robotAnimation.start();
                 robotImageView.animate().translationXBy((float) (width * 2)).setDuration(10000);
             }
@@ -164,7 +159,7 @@ public class EndingActivity extends AppCompatActivity {
                 boyImageView.setScaleX(-1); //reverse image
                 boyImageView.setBackgroundResource(R.drawable.boyrun);
                 boyAnimation = (AnimationDrawable) boyImageView.getBackground();
-                boyImageView.setX((float) (width * 1));
+                boyImageView.setX((float) (width));
                 boyAnimation.start();
                 boyImageView.animate().translationXBy((float) (-width * 2.5)).setDuration(10000);
             }
@@ -177,7 +172,7 @@ public class EndingActivity extends AppCompatActivity {
                 robotImageView.setScaleX(1); //set image to normal
                 robotImageView.setBackgroundResource(R.drawable.robotrun);
                 robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-                robotImageView.setX((float) (width * 1));
+                robotImageView.setX((float) (width));
                 robotAnimation.start();
                 robotImageView.animate().translationXBy((float) (-width * 2)).setDuration(10000);
             }
@@ -190,7 +185,7 @@ public class EndingActivity extends AppCompatActivity {
                 boyImageView.setScaleX(1); //set image to normal
                 boyImageView.setBackgroundResource(R.drawable.boyrun);
                 boyAnimation = (AnimationDrawable) boyImageView.getBackground();
-                boyImageView.setX((float) (-width * 1));
+                boyImageView.setX((float) (-width));
                 boyAnimation.start();
                 boyImageView.animate().translationXBy((float) (width * 1.4)).setDuration(7000);
                     boyImageView.postDelayed(new Runnable() {
@@ -231,7 +226,7 @@ public class EndingActivity extends AppCompatActivity {
             public void run() {
                 robotImageView.setBackgroundResource(R.drawable.robotrun);
                 robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-                robotImageView.setX((float) (width * 1));
+                robotImageView.setX((float) (width));
                 robotAnimation.start();
                 robotImageView.animate().translationXBy((float) (-width * .5)).setDuration(1500);
                 robotImageView.postDelayed(new Runnable() {

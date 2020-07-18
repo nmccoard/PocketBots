@@ -156,10 +156,6 @@ public class BattleScreenActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         screenHeight = displayMetrics.heightPixels;
         screenWidth = displayMetrics.widthPixels;
-        // 720 x 1334  - Brian          - perfect   .054
-        // 1080 x 1794 - Nate Pixel 2   - sinking   .054
-        // 1080 x 2047 - Briana         - perfect   .007
-        // 1080 x 2088 - Nate Pixel 3a  - floating  .007
         Log.d("Dimensions", "Width: " + screenWidth + " Height: " + screenHeight);
 
         if (screenHeight < 900) {
@@ -459,7 +455,6 @@ public class BattleScreenActivity extends AppCompatActivity {
      ******************************************/
     public void setMonsterHit() {
         monsterAnimation.stop();
-        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) monsterImageView.getLayoutParams();
         switch (level) {
             case 1:
                 monsterImageView.setBackgroundResource(R.drawable.redhit);
@@ -515,27 +510,6 @@ public class BattleScreenActivity extends AppCompatActivity {
                 robotAnimation.start();
             }
         }, 200);
-
-        /*
-        // Monster Attacks
-        monsterImageView.animate().translationX((float)(-screenWidth * .34)).setDuration(200);
-        monsterImageView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                monsterImageView.animate().translationXBy((float) (screenWidth * .34)).setDuration(200);
-            }
-        }, 200);*/
-
-        // Robot Gets Hit
-/*        robotImageView.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                robotAnimation.stop();
-                robotImageView.setBackgroundResource(R.drawable.robothit);
-                robotAnimation = (AnimationDrawable) robotImageView.getBackground();
-                robotAnimation.start();
-            }
-        }, 500);*/
 
         // Set Robot back to Idle or Stunned if dead
         robotImageView.postDelayed(new Runnable() {

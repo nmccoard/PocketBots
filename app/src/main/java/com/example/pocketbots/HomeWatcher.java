@@ -11,36 +11,57 @@ public class HomeWatcher {
     private Context mContext;
     private IntentFilter mFilter;
     private OnHomePressedListener mListener;
-    private InnerRecevier mRecevier;
+    private InnerReceiver mReceiver;
 
+    /******************************************
+     *   HomeWatcher
+     ******************************************/
     public HomeWatcher(Context context) {
         mContext = context;
         mFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
     }
 
+    /******************************************
+     *   Set On Home Pressed Listener
+     ******************************************/
     public void setOnHomePressedListener(OnHomePressedListener listener) {
         mListener = listener;
-        mRecevier = new InnerRecevier();
+        mReceiver = new InnerReceiver();
     }
 
+    /******************************************
+     *   Start Watch
+     ******************************************/
     public void startWatch() {
-        if (mRecevier != null) {
-            mContext.registerReceiver(mRecevier, mFilter);
+        if (mReceiver != null) {
+            mContext.registerReceiver(mReceiver, mFilter);
         }
     }
 
+    /******************************************
+     *   Stop Watch
+     ******************************************/
     public void stopWatch() {
-        if (mRecevier != null) {
-            mContext.unregisterReceiver(mRecevier);
+        if (mReceiver != null) {
+            mContext.unregisterReceiver(mReceiver);
         }
     }
 
-    class InnerRecevier extends BroadcastReceiver {
+    /******************************************
+     *   Inner Receiver Class
+     *   - Acts as a transmitter
+     *   - Notifies program if User leaves
+     *   the game, closes it, or suspends it.
+     ******************************************/
+    class InnerReceiver extends BroadcastReceiver {
         final String SYSTEM_DIALOG_REASON_KEY = "reason";
         final String SYSTEM_DIALOG_REASON_GLOBAL_ACTIONS = "globalactions";
         final String SYSTEM_DIALOG_REASON_RECENT_APPS = "recentapps";
         final String SYSTEM_DIALOG_REASON_HOME_KEY = "homekey";
 
+        /******************************************
+         *   On Receive
+         ******************************************/
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
@@ -60,6 +81,9 @@ public class HomeWatcher {
         }
     }
 
+    /******************************************
+     *   On Home Pressed Listener
+     ******************************************/
     public interface OnHomePressedListener {
         void onHomePressed();
 

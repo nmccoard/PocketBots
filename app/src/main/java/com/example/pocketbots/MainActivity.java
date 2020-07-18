@@ -18,6 +18,13 @@ import android.os.PowerManager;
 import android.view.View;
 import android.widget.Button;
 
+/******************************************
+ *   MainActivity Class
+ *   - Runs The Program (Generates the Game)
+ *   - Executes Classes (SFX/BGM)
+ *   - Prompts User to Start a New Game
+ *   or Load Game.
+ ******************************************/
 public class MainActivity extends AppCompatActivity {
 
     public SharedPreferences gameSettings;
@@ -28,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private SoundPool soundPool;
     private int sound00, sound01;
 
+    /******************************************
+     *   On Create
+     ******************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +58,18 @@ public class MainActivity extends AppCompatActivity {
         // HomeWatcher Class Implementation
         mHomeWatcher = new HomeWatcher(this);
         mHomeWatcher.setOnHomePressedListener(new HomeWatcher.OnHomePressedListener() {
+            /******************************************
+             *   On Home Pressed
+             ******************************************/
             @Override
             public void onHomePressed() {
                 if (mServ != null) {
                     mServ.pauseMusic();
                 }
             }
+            /******************************************
+             *   On Home Long Pressed
+             ******************************************/
             @Override
             public void onHomeLongPressed() {
                 if (mServ != null) {
@@ -99,22 +115,34 @@ public class MainActivity extends AppCompatActivity {
     private MusicService mServ;
     private ServiceConnection Scon =new ServiceConnection(){
 
+        /******************************************
+         *   On Service Connected
+         ******************************************/
         public void onServiceConnected(ComponentName name, IBinder
                 binder) {
             mServ = ((MusicService.ServiceBinder)binder).getService();
         }
 
+        /******************************************
+         *   On Service Disconnected
+         ******************************************/
         public void onServiceDisconnected(ComponentName name) {
             mServ = null;
         }
     };
 
+    /******************************************
+     *   Do Bind Service
+     ******************************************/
     void doBindService(){
         bindService(new Intent(this,MusicService.class),
                 Scon,Context.BIND_AUTO_CREATE);
         mIsBound = true;
     }
 
+    /******************************************
+     *   Do Unbind Service
+     ******************************************/
     void doUnbindService()
     {
         if(mIsBound)
@@ -125,6 +153,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Continue the Music upon returning to the window.
+    /******************************************
+     *   On Resume
+     ******************************************/
     @Override
     protected void onResume() {
         super.onResume();
@@ -136,6 +167,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Pause the Music upon User's Input.
+    /******************************************
+     *   On Pause
+     ******************************************/
     @Override
     protected void onPause() {
         super.onPause();
@@ -156,6 +190,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Terminate the Music, Save System Resources
+    /******************************************
+     *   On Destroy
+     ******************************************/
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -167,10 +204,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /******************************************
+     *   New Game
+     ******************************************/
     public void newGame(View view) {
-        // loadGame.setVisibility(View.GONE);
-        // add option to ask for name
-        // add another button to call another function to start the map activity
 
         // SFX Implementation
         switch (view.getId()) {
@@ -188,6 +225,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /******************************************
+     *   Load Game
+     ******************************************/
     public void loadGame(View view) {
         Intent intent = new Intent(this, MapViewActivity.class);
         startActivity(intent);

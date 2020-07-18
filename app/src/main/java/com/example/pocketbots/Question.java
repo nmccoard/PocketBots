@@ -1,6 +1,7 @@
 package com.example.pocketbots;
 
 /******************************************
+ *   QUESTION
  *   Simple Question class so we can have question objects
  ******************************************/
 public class Question {

@@ -3,14 +3,16 @@ package com.example.pocketbots;
 
 import android.provider.BaseColumns;
 
+/******************************************
+ *   QuizContract
+ *   Setting up the database constant variables to make building and pulling from the db easier
+ ******************************************/
 public final class QuizContract {
 
     private QuizContract() {}
 
     public static class QuestionsTable {
-        /**
-         * Setting up the database constant variables to make building and pulling from the db easier
-         */
+
         public static final String TABLE_NAME = "battle_screen_questions";
         public static final String _ID = "_id";
         public static final String COLUMN_QUESTION = "question";

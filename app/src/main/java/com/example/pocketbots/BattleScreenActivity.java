@@ -17,6 +17,8 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -497,16 +499,40 @@ public class BattleScreenActivity extends AppCompatActivity {
     public void hitRobot() {
 
         // Monster Attacks
+        Animation animation = new TranslateAnimation(0, -650, 0, 0);
+        animation.setDuration(200);
+        animation.setFillAfter(true);
+        monsterImageView.startAnimation(animation);
+
+        monsterImageView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Monster Moves Back to original position
+                Animation animation2 = new TranslateAnimation(-650, 0, 0, 0);
+                animation2.setDuration(1000);
+                animation2.setFillAfter(true);
+                monsterImageView.startAnimation(animation2);
+
+                // Robot gets hit
+                robotAnimation.stop();
+                robotImageView.setBackgroundResource(R.drawable.robothit);
+                robotAnimation = (AnimationDrawable) robotImageView.getBackground();
+                robotAnimation.start();
+            }
+        }, 200);
+
+        /*
+        // Monster Attacks
         monsterImageView.animate().translationX((float)(-screenWidth * .34)).setDuration(200);
         monsterImageView.postDelayed(new Runnable() {
             @Override
             public void run() {
                 monsterImageView.animate().translationXBy((float) (screenWidth * .34)).setDuration(200);
             }
-        }, 200);
+        }, 200);*/
 
         // Robot Gets Hit
-        robotImageView.postDelayed(new Runnable() {
+/*        robotImageView.postDelayed(new Runnable() {
             @Override
             public void run() {
                 robotAnimation.stop();
@@ -514,7 +540,7 @@ public class BattleScreenActivity extends AppCompatActivity {
                 robotAnimation = (AnimationDrawable) robotImageView.getBackground();
                 robotAnimation.start();
             }
-        }, 200);
+        }, 500);*/
 
         // Set Robot back to Idle or Stunned if dead
         robotImageView.postDelayed(new Runnable() {

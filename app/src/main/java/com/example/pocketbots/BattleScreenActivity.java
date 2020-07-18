@@ -251,9 +251,10 @@ public class BattleScreenActivity extends AppCompatActivity {
         if (answerNum == currentQuestion.getAnswerNum()) {
             // Reduces hit by 1 if on last monster, and random otherwise
             if (level == 7) {
-                opponentHP = opponentHP - 2;
+                opponentHP = opponentHP - 1;
             } else {
                 opponentHP = opponentHP - (r.nextInt(6 - 2) + 2);
+                // used during testing
                 //opponentHP = opponentHP - 5;
             }
             // Set monster health to 0 if he is dead

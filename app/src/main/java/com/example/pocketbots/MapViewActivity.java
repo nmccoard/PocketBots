@@ -58,6 +58,7 @@ public class MapViewActivity extends AppCompatActivity {
         lvlBtn6 = findViewById(R.id.lvlBtn6);
         lvlBtn7 = findViewById(R.id.lvlBtn7);
 
+        // this switch case check to see what the highest level achieved is and un-hides the appropriate level buttons
         switch (currentLevel){
             case 1:
                 lvlBtn1.setVisibility(View.VISIBLE);
@@ -147,6 +148,9 @@ public class MapViewActivity extends AppCompatActivity {
 
     }
 
+    /******************************************
+     *   Functions to add sound to the different level buttons
+     ******************************************/
     public void level1(View view){
         editGame.putInt("level", 1);
         editGame.commit();

@@ -348,16 +348,18 @@ public class BattleScreenActivity extends AppCompatActivity {
 
     /******************************************
      *   ON BACK PRESSED
-     *   Show toast when back button is pressed
+     *   Show toast when back button is pressed on on the second press of back button will go to the MapViewActivity
      ******************************************/
     @Override
     public void onBackPressed() {
+        // check the time between when you first press the back button and the second time to see if it is less then 2 seconds.
         if (backPressedTime + 2000 > System.currentTimeMillis()) {
             finishQuiz();
         } else {
             Toast.makeText(this, "Press back again to run away from the fight", Toast.LENGTH_SHORT).show();
         }
 
+        // variable to save the time you press the back button
         backPressedTime = System.currentTimeMillis();
     }
 

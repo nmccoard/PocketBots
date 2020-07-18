@@ -16,7 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-
+/******************************************
+ *   BATTLE INTRO ACTIVITY
+ *   Animations that take place just before the battle screen.
+ ******************************************/
 public class BattleIntroActivity extends AppCompatActivity {
 
     public  Button battleButton;

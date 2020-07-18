@@ -253,8 +253,8 @@ public class BattleScreenActivity extends AppCompatActivity {
             if (level == 7) {
                 opponentHP = opponentHP - 2;
             } else {
-                //opponentHP = opponentHP - (r.nextInt(6 - 2) + 2);
-                opponentHP = opponentHP - 5;
+                opponentHP = opponentHP - (r.nextInt(6 - 2) + 2);
+                //opponentHP = opponentHP - 5;
             }
             // Set monster health to 0 if he is dead
             if (opponentHP < 0) {

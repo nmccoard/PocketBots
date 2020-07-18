@@ -19,7 +19,7 @@ public class QuizDbHelper extends SQLiteOpenHelper {
     // setting the database name
     private static final String DATABASE_NAME = "BattleScreenQuestions.db";
     // Change the database version when you make changes to the database. When the version changes it will delete the database and rebuild it
-    private static final int DATABASE_VERSION = 15;
+    private static final int DATABASE_VERSION = 16;
 
     private SQLiteDatabase db;
 
@@ -99,11 +99,11 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         addQuestion(q20);
         Question q21 = new Question( "What is the value of sum2? int sum1 = 100 + 50; int sum2 = sum1 + 250;", "\"sum1250\"", "350", "400", "150", 3, 3);
         addQuestion(q21);
-        Question q22 = new Question( "What does the modulus (%) operator do?", "Multiplies", "Adds", "Divides", "Returns a remainder", 4, 3);
+        Question q22 = new Question( "What does the modulus (%) operator do?", "Multiplies", "Adds", "Divides", "Returns the remainder", 4, 3);
         addQuestion(q22);
         Question q23 = new Question( "What does the Increment (++) operator do?", "Decrease by 1", "Increase by 1", "Returns a remainder", "Adds", 2, 3);
         addQuestion(q23);
-        Question q24 = new Question( "What does the Decrement (--) operator do?", "Decrease by 1", "Increase by 1", "Subtracts 2 values", "Divides", 1, 3);
+        Question q24 = new Question( "What does the Decrement (--) operator do?", "Decrease by 1", "Increase by 1", "Subtracts", "Divides", 1, 3);
         addQuestion(q24);
         Question q25 = new Question( "All assignment operators perform _____", "arithmetic", "value storage", "comparisons", "logical operations", 2, 3);
         addQuestion(q25);

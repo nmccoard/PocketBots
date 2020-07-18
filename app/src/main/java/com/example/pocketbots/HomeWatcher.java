@@ -5,6 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
+/******************************************
+ *   HomeWatcher Class
+ *   - Checks User Activity
+ *   - Suspends, Resumes, Nulls System
+ *   Resources
+ ******************************************/
 public class HomeWatcher {
 
     //static final String TAG = "hg";
